@@ -76,7 +76,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="prevnum" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="410.0" textFill="#514897">
+                        <Label fx:id="prevNum" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="410.0" textFill="#514897">
                            <font>
                               <Font size="15.0" />
                            </font>

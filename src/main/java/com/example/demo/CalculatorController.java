@@ -15,6 +15,7 @@ public class CalculatorController extends MenuBarController{
     private String used_operator="";
     private boolean check=true;
     private boolean used_dot=false;
+    private boolean can_add=true;
 
     public double create(double num1, double num2, String operator){
         switch(operator){
@@ -65,9 +66,10 @@ public class CalculatorController extends MenuBarController{
                 return;
             }
         }
-
-        result.setText(result.getText()+val);
-        prevNum.setText(prevNum.getText()+val);
+        if(can_add) {
+            result.setText(result.getText() + val);
+            prevNum.setText(prevNum.getText() + val);
+        }
     }
 
     public void operatorCompute(ActionEvent e){
@@ -83,6 +85,7 @@ public class CalculatorController extends MenuBarController{
             prevNum.setText(num1+" "+used_operator+" ");
             result.setText("");
             used_dot=false;
+            can_add=true;
         }
 
         else{
@@ -103,6 +106,7 @@ public class CalculatorController extends MenuBarController{
             used_operator="";
             check=false;
             used_dot=true;
+            can_add=false;
         }
 
     }
@@ -113,6 +117,7 @@ public class CalculatorController extends MenuBarController{
         check=true;
         used_operator="";
         used_dot=false;
+        can_add=true;
     }
 
     public void clearCalculator(){
@@ -122,6 +127,7 @@ public class CalculatorController extends MenuBarController{
         check=true;
         used_operator="";
         used_dot=false;
+        can_add=true;
     }
 
     public void plus_minus_sqrt(ActionEvent e){
@@ -140,6 +146,7 @@ public class CalculatorController extends MenuBarController{
             result.setText(String.valueOf(Math.sqrt(num1)));
         }
         prevNum.setText("");
+        can_add=false;
     }
 
 }
