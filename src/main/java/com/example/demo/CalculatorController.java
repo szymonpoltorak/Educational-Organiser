@@ -6,21 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class CalculatorController extends MenuBarController{
-    @FXML
-    private Label prevnum;
 
+    @FXML
+    private Label prevNum;
     @FXML
     private Label result;
-
     private double num1=0;
-
     private String used_operator="";
-
     private boolean check=true;
-
     private boolean used_dot=false;
-
-
 
     public double create(double num1, double num2, String operator){
         switch(operator){
@@ -42,7 +36,7 @@ public class CalculatorController extends MenuBarController{
 
         if(check) {
             result.setText("");
-            prevnum.setText("");
+            prevNum.setText("");
             check = false;
         }
 
@@ -58,7 +52,7 @@ public class CalculatorController extends MenuBarController{
                 }
                 val = ".";
                 result.setText(result.getText() + val);
-                prevnum.setText(prevnum.getText() + val);
+                prevNum.setText(prevNum.getText() + val);
                 used_dot = true;
             }
             return;
@@ -73,7 +67,7 @@ public class CalculatorController extends MenuBarController{
         }
 
         result.setText(result.getText()+val);
-        prevnum.setText(prevnum.getText()+val);
+        prevNum.setText(prevNum.getText()+val);
     }
 
     public void operatorCompute(ActionEvent e){
@@ -86,7 +80,7 @@ public class CalculatorController extends MenuBarController{
             }
             used_operator=value;
             num1=Double.parseDouble(result.getText());
-            prevnum.setText(num1+" "+used_operator+" ");
+            prevNum.setText(num1+" "+used_operator+" ");
             result.setText("");
             used_dot=false;
         }
@@ -114,7 +108,7 @@ public class CalculatorController extends MenuBarController{
     }
     public void clearCalculator(ActionEvent e){
         result.setText("0.0");
-        prevnum.setText("");
+        prevNum.setText("");
         num1=0;
         check=true;
         used_operator="";
@@ -123,7 +117,7 @@ public class CalculatorController extends MenuBarController{
 
     public void clearCalculator(){
         result.setText("Error");
-        prevnum.setText("");
+        prevNum.setText("");
         num1=0;
         check=true;
         used_operator="";
@@ -145,7 +139,7 @@ public class CalculatorController extends MenuBarController{
         else{
             result.setText(String.valueOf(Math.sqrt(num1)));
         }
-        prevnum.setText("");
+        prevNum.setText("");
     }
 
 }
