@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CalculatorController">
    <children>
-      <Label layoutX="206.0" layoutY="14.0" prefHeight="51.0" prefWidth="128.0" text="To jest Calc">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <FlowPane orientation="VERTICAL" prefHeight="320.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="iconMain" fitHeight="40.0" fitWidth="600.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
@@ -68,5 +65,153 @@
             </ImageView>
          </children>
       </FlowPane>
+      <AnchorPane layoutX="194.0" layoutY="30.0" prefHeight="440.0" prefWidth="460.0" style="-fx-background-color: #222; -fx-background-radius: 28;">
+         <children>
+            <Pane layoutX="8.0" layoutY="34.0" prefHeight="400.0" prefWidth="440.0" style="-fx-background-radius: 15 15 25 25; -fx-background-color: linear-gradient(to right, #DECBA4, #3E5151)linear-gradient(to right, #DECBA4, #3E5151);">
+               <children>
+                  <Pane layoutX="10.0" layoutY="14.0" prefHeight="80.0" prefWidth="420.0" style="-fx-background-color: #00000025; -fx-background-radius: 15;">
+                     <children>
+                        <Label fx:id="result" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="23.0" prefHeight="43.0" prefWidth="400.0" text="0.0" textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prevnum" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="410.0" textFill="#514897">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="114.0" layoutY="99.0" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8; -fx-background-radius: 15;">
+                     <children>
+                        <Label layoutX="28.0" layoutY="7.0" text="+/-">
+                           <font>
+                              <Font name="Apple Symbols" size="40.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#plus_minus_sqrt" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="+/-" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button layoutY="58.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="8" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button layoutY="116.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button layoutY="174.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="2" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="218.0" layoutY="331.0" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434; -fx-background-radius: 15;">
+                     <children>
+                        <Label layoutX="46.0" layoutY="7.0" text="," textFill="WHITE">
+                           <font>
+                              <Font name="Apple Symbols" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button layoutX="10.0" layoutY="99.0" mnemonicParsing="false" onAction="#clearCalculator" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="AC" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="157.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="7" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="215.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="4" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="273.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="1" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="218.0" layoutY="99.0" mnemonicParsing="false" onAction="#plus_minus_sqrt" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="√ " textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="218.0" layoutY="157.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="9" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="218.0" layoutY="215.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="6" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="218.0" layoutY="273.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="3" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="218.0" layoutY="331.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="," textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="99.0" mnemonicParsing="false" onAction="#operatorCompute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #e49b0f#e49b0f#e49b0f#e49b0f #e49b0f#e49b0f#e49b0f#e49b0f; -fx-background-radius: 15 15;" text="÷" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="157.0" mnemonicParsing="false" onAction="#operatorCompute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #e49b0f#e49b0f#e49b0f#e49b0f #e49b0f#e49b0f#e49b0f#e49b0f; -fx-background-radius: 15 15;" text="x" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="215.0" mnemonicParsing="false" onAction="#operatorCompute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #e49b0f#e49b0f#e49b0f#e49b0f #e49b0f#e49b0f#e49b0f#e49b0f; -fx-background-radius: 15 15;" text="-" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="273.0" mnemonicParsing="false" onAction="#operatorCompute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #e49b0f#e49b0f#e49b0f#e49b0f #e49b0f#e49b0f#e49b0f#e49b0f; -fx-background-radius: 15 15;" text="+" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="331.0" mnemonicParsing="false" onAction="#operatorCompute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #e49b0f#e49b0f#e49b0f#e49b0f #e49b0f#e49b0f#e49b0f#e49b0f; -fx-background-radius: 15 15;" text="=" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="331.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="203.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="0" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="-2.0" prefHeight="34.0" prefWidth="460.0">
+               <children>
+                  <Pane layoutY="-3.0" prefHeight="34.0" prefWidth="460.0">
+                     <children>
+                        <Label layoutX="183.0" layoutY="8.0" text="Basic Calculator" textFill="#dfee07">
+                           <font>
+                              <Font name="AppleGothic Regular" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
