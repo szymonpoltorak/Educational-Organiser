@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
+   <children>
+      <Label layoutX="206.0" layoutY="14.0" prefHeight="51.0" prefWidth="128.0" text="To jest Calc">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <FlowPane orientation="VERTICAL" prefHeight="320.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="iconMain" fitHeight="40.0" fitWidth="600.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Main_closed.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fx:id="iconCalc" fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Calc_open.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fx:id="iconNote" fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Note_closed.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="320.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="320.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>
