@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CalculatorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.CalculatorController">
    <children>
       <FlowPane orientation="VERTICAL" prefHeight="320.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);">
          <children>
@@ -79,6 +79,11 @@
                         <Label fx:id="prevNum" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="410.0" textFill="#514897">
                            <font>
                               <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="label_M" alignment="CENTER" layoutX="4.0" layoutY="40.0" prefHeight="34.0" prefWidth="40.0">
+                           <font>
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
@@ -239,5 +244,20 @@
          </children>
       </AnchorPane>
       <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#switchToSceneCalcScene" prefHeight="45.0" prefWidth="70.0" text="Standard" />
+      <Button layoutX="61.0" layoutY="160.0" mnemonicParsing="false" onAction="#storage_in_memory_M" prefHeight="55.0" prefWidth="93.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="MRC" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="61.0" layoutY="223.0" mnemonicParsing="false" onAction="#storage_in_memory_M" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="M+" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="61.0" layoutY="285.0" mnemonicParsing="false" onAction="#storage_in_memory_M" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="M-" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
