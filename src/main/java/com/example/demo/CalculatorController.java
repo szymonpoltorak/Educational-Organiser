@@ -146,6 +146,8 @@ public class CalculatorController extends MenuBarController{
         else{
             result.setText(String.valueOf(Math.sqrt(num1)));
         }
+
+        used_dot=true;
         prevNum.setText("");
         can_add=false;
     }
@@ -158,46 +160,47 @@ public class CalculatorController extends MenuBarController{
         String val=button.getText();
         num1 = Double.parseDouble(result.getText());
 
-        if(val.equals("n!")) {
-            if(num1>=0 && Math.ceil(num1) == Math.floor(num1)) {
-                int frac = 1;
-                int temp = (int) num1;
-                if(temp<17) {
-                    if (temp > 0) {
-                        for (int i = 1; i <= temp; i++)
-                            frac *= i;
+        switch (val) {
+            case "n!":
+                if (num1 >= 0 && Math.ceil(num1) == Math.floor(num1)) {
+                    int frac = 1;
+                    int temp = (int) num1;
+                    if (temp < 17) {
+                        if (temp > 0) {
+                            for (int i = 1; i <= temp; i++)
+                                frac *= i;
+                        }
+                        result.setText(String.valueOf(frac));
+                    } else {
+                        result.setText("OVERFLOW");
                     }
-                    result.setText(String.valueOf(frac));
-                } else {
-                    result.setText("OVERFLOW");
-                }
-            }
-            else
-                result.setText(String.valueOf("BLAD"));
-            //todo: Komunikat, że silnia przyjmuje tylko liczby naturalne nieujemne
-        }
-        else if(val.equals("log")){
-            result.setText(String.valueOf(Math.log10(num1)));
-        }
-        else if(val.equals("|x|")){
-            result.setText(String.valueOf(Math.abs(num1)));
-        }
-        else if(val.equals("x^2")){
-            result.setText(String.valueOf(Math.pow(num1, 2)));
-        }
-        else if(val.equals("sin")){
-            result.setText(String.valueOf(Math.sin(num1)));
-        }
-        else if(val.equals("cos")){
-            result.setText(String.valueOf(Math.cos(num1)));
-        }
-        else if(val.equals("tan")){
-            result.setText(String.valueOf(Math.tan(num1)));
-        }
-        else if(val.equals("cot")){
-            result.setText(String.valueOf(Math.cos(num1)/Math.sin(num1)));
+                } else
+                    result.setText("BLAD");
+                break;
+            case "log":
+                result.setText(String.valueOf(Math.log10(num1)));
+                break;
+            case "|x|":
+                result.setText(String.valueOf(Math.abs(num1)));
+                break;
+            case "x^2":
+                result.setText(String.valueOf(Math.pow(num1, 2)));
+                break;
+            case "sin":
+                result.setText(String.valueOf(Math.sin(num1)));
+                break;
+            case "cos":
+                result.setText(String.valueOf(Math.cos(num1)));
+                break;
+            case "tan":
+                result.setText(String.valueOf(Math.tan(num1)));
+                break;
+            case "cot":
+                result.setText(String.valueOf(Math.cos(num1) / Math.sin(num1)));
+                break;
         }
 
+        used_dot=true;
         prevNum.setText("");
         can_add=false;
     }
