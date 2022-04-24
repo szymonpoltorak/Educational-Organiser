@@ -29,6 +29,7 @@ public class CalculatorController extends MenuBarController{
                 if(num2==0) return -1;
                 else return num1/num2;
             }
+            case "x^y": return Math.pow(num1, num2);
 
         }
         return 0.0;
@@ -145,6 +146,58 @@ public class CalculatorController extends MenuBarController{
         else{
             result.setText(String.valueOf(Math.sqrt(num1)));
         }
+        prevNum.setText("");
+        can_add=false;
+    }
+    public void calc_science_functions(ActionEvent e){
+        if(result.getText().isEmpty()){
+            return;
+        }
+
+        Button button=(Button)e.getSource();
+        String val=button.getText();
+        num1 = Double.parseDouble(result.getText());
+
+        if(val.equals("n!")) {
+            if(num1>=0 && Math.ceil(num1) == Math.floor(num1)) {
+                int frac = 1;
+                int temp = (int) num1;
+                if(temp<17) {
+                    if (temp > 0) {
+                        for (int i = 1; i <= temp; i++)
+                            frac *= i;
+                    }
+                    result.setText(String.valueOf(frac));
+                } else {
+                    result.setText("OVERFLOW");
+                }
+            }
+            else
+                result.setText(String.valueOf("BLAD"));
+            //todo: Komunikat, że silnia przyjmuje tylko liczby naturalne nieujemne
+        }
+        else if(val.equals("log")){
+            result.setText(String.valueOf(Math.log10(num1)));
+        }
+        else if(val.equals("|x|")){
+            result.setText(String.valueOf(Math.abs(num1)));
+        }
+        else if(val.equals("x^2")){
+            result.setText(String.valueOf(Math.pow(num1, 2)));
+        }
+        else if(val.equals("sin")){
+            result.setText(String.valueOf(Math.sin(num1)));
+        }
+        else if(val.equals("cos")){
+            result.setText(String.valueOf(Math.cos(num1)));
+        }
+        else if(val.equals("tan")){
+            result.setText(String.valueOf(Math.tan(num1)));
+        }
+        else if(val.equals("cot")){
+            result.setText(String.valueOf(Math.cos(num1)/Math.sin(num1)));
+        }
+
         prevNum.setText("");
         can_add=false;
     }

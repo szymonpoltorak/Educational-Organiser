@@ -41,6 +41,18 @@ public class MenuBarController {
         }
     }
 
+    public void switchToSceneCalcScienceScene (MouseEvent event) {
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("CalcScience.fxml")));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void switchToSceneNoteScene (MouseEvent event) {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Note.fxml")));
