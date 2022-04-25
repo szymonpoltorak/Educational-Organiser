@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 public class CalculatorController extends MenuBarController{
 
@@ -23,7 +24,8 @@ public class CalculatorController extends MenuBarController{
     private double num_remembered=0;
     private boolean visible_lable_M=false;
     private boolean mrc_click_before=false;
-
+    @FXML
+    private TextArea history;
 
     public double create(double num1, double num2, String operator) {
         switch(operator){
@@ -112,6 +114,8 @@ public class CalculatorController extends MenuBarController{
             }
             else {
                 result.setText(String.valueOf(score));
+                history.appendText(prevNum.getText() + " = ");
+                history.appendText( result.getText() + "\n");
             }
 
             used_operator="";
@@ -122,6 +126,11 @@ public class CalculatorController extends MenuBarController{
         }
         can_add_mrc=true;
     }
+
+    public void ClearHistory(ActionEvent clear){
+        history.setText("");
+    }
+
     public void clearCalculator(ActionEvent e){
         result.setText("0.0");
         prevNum.setText("");
@@ -155,9 +164,11 @@ public class CalculatorController extends MenuBarController{
 
         if(val.equals("+/-")) {
             result.setText(String.valueOf(num1 * -1));
+            history.appendText("- ("+num1 +")" + " = " + String.valueOf(num1 * -1) + "\n");
         }
         else{
             result.setText(String.valueOf(Math.sqrt(num1)));
+            history.appendText("√ ("+num1+")" + " = " + String.valueOf(Math.sqrt(num1)) + "\n" );
         }
 
         used_dot=true;
