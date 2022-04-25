@@ -13,17 +13,17 @@ public class CalculatorController extends MenuBarController{
     @FXML
     private Label result;
     @FXML
-    private Label label_M;
+    private Label labelM;
 
     private double num1=0;
-    private String used_operator="";
+    private String usedOperator ="";
     private boolean check=true;
-    private boolean used_dot=false;
-    private boolean can_add=true;
-    private boolean can_add_mrc=true;
-    private double num_remembered=0;
-    private boolean visible_lable_M=false;
-    private boolean mrc_click_before=false;
+    private boolean usedDot =false;
+    private boolean canAdd =true;
+    private boolean canAddMrc =true;
+    private double numRemembered =0;
+    private boolean visibleLableM =false;
+    private boolean mrcClickBefore =false;
     @FXML
     private TextArea history;
 
@@ -44,7 +44,7 @@ public class CalculatorController extends MenuBarController{
         }
         return 0.0;
     }
-    public void Compute(ActionEvent e){
+    public void compute(ActionEvent e){
 
         if(check) {
             result.setText("");
@@ -57,7 +57,7 @@ public class CalculatorController extends MenuBarController{
         String val=but.getText();
 
         if(val.equals(",")){
-            if(!used_dot) {
+            if(!usedDot) {
                 if(result.getText().isEmpty()){
                     clearCalculator();
                     return;
@@ -65,7 +65,7 @@ public class CalculatorController extends MenuBarController{
                 val = ".";
                 result.setText(result.getText() + val);
                 prevNum.setText(prevNum.getText() + val);
-                used_dot = true;
+                usedDot = true;
             }
             return;
         }
@@ -77,12 +77,12 @@ public class CalculatorController extends MenuBarController{
                 return;
             }
         }
-        if(can_add) {
+        if(canAdd) {
             result.setText(result.getText() + val);
             prevNum.setText(prevNum.getText() + val);
         }
-        mrc_click_before=false;
-        can_add_mrc=false;
+        mrcClickBefore =false;
+        canAddMrc =false;
     }
 
     public void operatorCompute(ActionEvent e){
@@ -90,26 +90,26 @@ public class CalculatorController extends MenuBarController{
         String value=button.getText();
 
         if(!value.equals("=")){
-            if(!used_operator.isEmpty()){
+            if(!usedOperator.isEmpty()){
                 return;
             }
-            used_operator=value;
+            usedOperator =value;
             num1=Double.parseDouble(result.getText());
-            prevNum.setText(num1+" "+used_operator+" ");
+            prevNum.setText(num1+" "+ usedOperator +" ");
             result.setText("");
-            used_dot=false;
-            can_add=true;
+            usedDot =false;
+            canAdd =true;
         }
 
         else{
-            if(used_operator.isEmpty()){
+            if(usedOperator.isEmpty()){
                 return;
             }
 
             double num2=Double.parseDouble(result.getText());
-            double score=create(num1,num2,used_operator);
+            double score=create(num1,num2, usedOperator);
 
-            if(used_operator.equals("÷") && num2==0) {
+            if(usedOperator.equals("÷") && num2==0) {
                 clearCalculator();
             }
             else {
@@ -118,16 +118,16 @@ public class CalculatorController extends MenuBarController{
                 history.appendText( result.getText() + "\n");
             }
 
-            used_operator="";
+            usedOperator ="";
             check=false;
-            used_dot=true;
-            can_add=false;
-            mrc_click_before=false;
+            usedDot =true;
+            canAdd =false;
+            mrcClickBefore =false;
         }
-        can_add_mrc=true;
+        canAddMrc =true;
     }
 
-    public void ClearHistory(ActionEvent clear){
+    public void clearHistory(ActionEvent clear){
         history.setText("");
     }
 
@@ -136,10 +136,10 @@ public class CalculatorController extends MenuBarController{
         prevNum.setText("");
         num1=0;
         check=true;
-        used_operator="";
-        used_dot=false;
-        can_add=true;
-        can_add_mrc=true;
+        usedOperator ="";
+        usedDot =false;
+        canAdd =true;
+        canAddMrc =true;
     }
 
     public void clearCalculator(){
@@ -147,13 +147,13 @@ public class CalculatorController extends MenuBarController{
         prevNum.setText("");
         num1=0;
         check=true;
-        used_operator="";
-        used_dot=false;
-        can_add=true;
-        can_add_mrc=true;
+        usedOperator ="";
+        usedDot =false;
+        canAdd =true;
+        canAddMrc =true;
     }
 
-    public void plus_minus_sqrt(ActionEvent e){
+    public void plusMinusSqrt(ActionEvent e){
         if(result.getText().isEmpty()){
             return;
         }
@@ -171,11 +171,11 @@ public class CalculatorController extends MenuBarController{
             history.appendText("√ ("+num1+")" + " = " + String.valueOf(Math.sqrt(num1)) + "\n" );
         }
 
-        used_dot=true;
+        usedDot =true;
         prevNum.setText("");
-        can_add=false;
+        canAdd =false;
     }
-    public void calc_science_functions(ActionEvent e){
+    public void calcScienceFunctions(ActionEvent e){
         if(result.getText().isEmpty()){
             return;
         }
@@ -224,24 +224,24 @@ public class CalculatorController extends MenuBarController{
                 break;
         }
 
-        used_dot=true;
+        usedDot =true;
         prevNum.setText("");
-        can_add=false;
+        canAdd =false;
     }
 
     // TODO: rozwiazac problem z '.' przy wybieraniu MRC, przetestować dokładnie MRC, ustawic przyciski
-    public void storage_in_memory_M(ActionEvent e) {
+    public void storageInMemoryM(ActionEvent e) {
         Button button=(Button)e.getSource();
         String val=button.getText();
 
         if(val.equals("MRC")) {
-            if(mrc_click_before){
-                visible_lable_M = false;
-                label_M.setText("");
-                mrc_click_before=false;
+            if(mrcClickBefore){
+                visibleLableM = false;
+                labelM.setText("");
+                mrcClickBefore =false;
             }
-            else if(can_add_mrc){
-                val = String.valueOf(num_remembered);
+            else if(canAddMrc){
+                val = String.valueOf(numRemembered);
 
                 if(check) {
                     result.setText("");
@@ -249,28 +249,28 @@ public class CalculatorController extends MenuBarController{
                     check = false;
                 }
 
-                if(can_add) {
+                if(canAdd) {
                     result.setText(result.getText() + val);
                     prevNum.setText(prevNum.getText() + val);
-                    can_add=false;
+                    canAdd =false;
                 }
-                mrc_click_before=true;
+                mrcClickBefore =true;
             }
         }
         if(val.equals("M-")) {
-            num_remembered -= Double.parseDouble(result.getText());
-            if(!visible_lable_M) {
-                visible_lable_M = true;
-                label_M.setText("M");
-                mrc_click_before=false;
+            numRemembered -= Double.parseDouble(result.getText());
+            if(!visibleLableM) {
+                visibleLableM = true;
+                labelM.setText("M");
+                mrcClickBefore =false;
             }
         }
         else if(val.equals("M+")) {
-            num_remembered += Double.parseDouble(result.getText());
-            if(!visible_lable_M) {
-                visible_lable_M = true;
-                label_M.setText("M");
-                mrc_click_before=false;
+            numRemembered += Double.parseDouble(result.getText());
+            if(!visibleLableM) {
+                visibleLableM = true;
+                labelM.setText("M");
+                mrcClickBefore =false;
             }
         }
 
