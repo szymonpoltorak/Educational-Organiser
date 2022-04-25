@@ -68,7 +68,6 @@ public class NoteController extends MenuBarController implements Initializable{
         }
         currentNote = currentPath;
 
-        System.out.println(currentNote);
 
         try {
             notesArea.setText(String.join("\n", Files.readAllLines(currentNote)));
@@ -135,14 +134,12 @@ public class NoteController extends MenuBarController implements Initializable{
                 deleteFolder.setVisible(true);
                 addNewNote.setVisible(true);
                 cancel.setVisible(true);
-                System.out.println("dir");
             }
             if (file.isFile()) {
                 deleteFolder.setVisible(false);
                 addNewNote.setVisible(false);
                 deleteNote.setVisible(true);
                 cancel.setVisible(true);
-                System.out.println("file");
             }
             if (notesList.getRoot().equals(notesList.getSelectionModel().getSelectedItem())){
                 deleteNote.setVisible(false);
@@ -150,7 +147,6 @@ public class NoteController extends MenuBarController implements Initializable{
                 addNewNote.setVisible(false);
                 cancel.setVisible(true);
             }
-            System.out.println("add new clicked.");
         }
 
     }
@@ -188,12 +184,11 @@ public class NoteController extends MenuBarController implements Initializable{
 
         item.getChildren().add(newItem);
 
-        System.out.println(item.getChildren().add(newItem));
 
         addNotePane.setVisible(false);
         addFileName.setPromptText("New file name");
         newNote.createNewFile();
-        System.out.println(newNote.exists());
+
     }
     public void cancelAddNewNoteButton(){
         addNotePane.setVisible(false);
@@ -222,7 +217,6 @@ public class NoteController extends MenuBarController implements Initializable{
 
 
     public void cancelContextMenu(){
-        System.out.println("cancel new clicked.");
         contextMenu.hide();
     }
 
