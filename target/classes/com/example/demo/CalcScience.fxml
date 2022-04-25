@@ -81,7 +81,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="label_M" alignment="CENTER" layoutX="4.0" layoutY="40.0" prefHeight="34.0" prefWidth="40.0">
+                        <Label fx:id="labelM" alignment="CENTER" layoutX="4.0" layoutY="40.0" prefHeight="34.0" prefWidth="40.0">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -93,42 +93,42 @@
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="202.0" layoutY="157.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="7" textFill="WHITE">
+                  <Button layoutX="202.0" layoutY="157.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="7" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="202.0" layoutY="215.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="4" textFill="WHITE">
+                  <Button layoutX="202.0" layoutY="215.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="4" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="202.0" layoutY="273.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="1" textFill="WHITE">
+                  <Button layoutX="202.0" layoutY="273.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="1" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="306.0" layoutY="99.0" mnemonicParsing="false" onAction="#plus_minus_sqrt" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="√" textFill="WHITE">
+                  <Button layoutX="306.0" layoutY="99.0" mnemonicParsing="false" onAction="#plusMinusSqrt" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="√" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="410.0" layoutY="157.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="9" textFill="WHITE">
+                  <Button layoutX="410.0" layoutY="157.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="9" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="410.0" layoutY="215.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="6" textFill="WHITE">
+                  <Button layoutX="410.0" layoutY="215.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="6" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="410.0" layoutY="273.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="3" textFill="WHITE">
+                  <Button layoutX="410.0" layoutY="273.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="3" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="410.0" layoutY="331.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="," textFill="WHITE">
+                  <Button layoutX="410.0" layoutY="331.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="," textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -158,37 +158,37 @@
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="202.0" layoutY="331.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="204.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="0" textFill="WHITE">
+                  <Button layoutX="202.0" layoutY="331.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="204.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="0" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="306.0" layoutY="273.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="2" textFill="WHITE">
+                  <Button layoutX="306.0" layoutY="273.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="2" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="306.0" layoutY="215.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="5" textFill="WHITE">
+                  <Button layoutX="306.0" layoutY="215.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="5" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="306.0" layoutY="157.0" mnemonicParsing="false" onAction="#Compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="8" textFill="WHITE">
+                  <Button layoutX="306.0" layoutY="157.0" mnemonicParsing="false" onAction="#compute" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="8" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="215.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="cos" textFill="WHITE">
+                  <Button layoutX="14.0" layoutY="215.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="cos" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="331.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="cot" textFill="WHITE">
+                  <Button layoutX="14.0" layoutY="331.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="cot" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="273.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="tan" textFill="WHITE">
+                  <Button layoutX="14.0" layoutY="273.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="tan" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -198,32 +198,32 @@
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="sin" textFill="WHITE">
+                  <Button layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="sin" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="201.0" layoutY="99.0" mnemonicParsing="false" onAction="#plus_minus_sqrt" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="+/-" textFill="WHITE">
+                  <Button layoutX="201.0" layoutY="99.0" mnemonicParsing="false" onAction="#plusMinusSqrt" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="+/-" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="98.0" layoutY="157.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="n!" textFill="WHITE">
+                  <Button layoutX="98.0" layoutY="157.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="n!" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="98.0" layoutY="215.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="x^2" textFill="WHITE">
+                  <Button layoutX="98.0" layoutY="215.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="x^2" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="98.0" layoutY="273.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="log" textFill="WHITE">
+                  <Button layoutX="98.0" layoutY="273.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="log" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button layoutX="98.0" layoutY="331.0" mnemonicParsing="false" onAction="#calc_science_functions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="|x|" textFill="WHITE">
+                  <Button layoutX="98.0" layoutY="331.0" mnemonicParsing="false" onAction="#calcScienceFunctions" prefHeight="55.0" prefWidth="100.0" style="-fx-background-color: #B8B8B8#B8B8B8 #B8B8B8#B8B8B8; -fx-background-radius: 15 15;" text="|x|" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -244,17 +244,17 @@
          </children>
       </AnchorPane>
       <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#switchToSceneCalcScene" prefHeight="45.0" prefWidth="70.0" text="Standard" />
-      <Button layoutX="61.0" layoutY="160.0" mnemonicParsing="false" onAction="#storage_in_memory_M" prefHeight="55.0" prefWidth="93.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="MRC" textFill="WHITE">
+      <Button layoutX="61.0" layoutY="160.0" mnemonicParsing="false" onAction="#storageInMemoryM" prefHeight="55.0" prefWidth="93.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="MRC" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button layoutX="61.0" layoutY="223.0" mnemonicParsing="false" onAction="#storage_in_memory_M" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="M+" textFill="WHITE">
+      <Button layoutX="61.0" layoutY="223.0" mnemonicParsing="false" onAction="#storageInMemoryM" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="M+" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button layoutX="61.0" layoutY="285.0" mnemonicParsing="false" onAction="#storage_in_memory_M" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="M-" textFill="WHITE">
+      <Button layoutX="61.0" layoutY="285.0" mnemonicParsing="false" onAction="#storageInMemoryM" prefHeight="55.0" prefWidth="80.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="M-" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
