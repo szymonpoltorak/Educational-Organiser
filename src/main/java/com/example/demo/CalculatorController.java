@@ -11,13 +11,21 @@ public class CalculatorController extends MenuBarController{
     private Label prevNum;
     @FXML
     private Label result;
+    @FXML
+    private Label label_M;
+
     private double num1=0;
     private String used_operator="";
     private boolean check=true;
     private boolean used_dot=false;
     private boolean can_add=true;
+    private boolean can_add_mrc=true;
+    private double num_remembered=0;
+    private boolean visible_lable_M=false;
+    private boolean mrc_click_before=false;
 
-    public double create(double num1, double num2, String operator){
+
+    public double create(double num1, double num2, String operator) {
         switch(operator){
             case "+": return num1+num2;
 
@@ -29,6 +37,7 @@ public class CalculatorController extends MenuBarController{
                 if(num2==0) return -1;
                 else return num1/num2;
             }
+            case "x^y": return Math.pow(num1, num2);
 
         }
         return 0.0;
@@ -70,6 +79,8 @@ public class CalculatorController extends MenuBarController{
             result.setText(result.getText() + val);
             prevNum.setText(prevNum.getText() + val);
         }
+        mrc_click_before=false;
+        can_add_mrc=false;
     }
 
     public void operatorCompute(ActionEvent e){
@@ -107,8 +118,9 @@ public class CalculatorController extends MenuBarController{
             check=false;
             used_dot=true;
             can_add=false;
+            mrc_click_before=false;
         }
-
+        can_add_mrc=true;
     }
     public void clearCalculator(ActionEvent e){
         result.setText("0.0");
@@ -118,6 +130,7 @@ public class CalculatorController extends MenuBarController{
         used_operator="";
         used_dot=false;
         can_add=true;
+        can_add_mrc=true;
     }
 
     public void clearCalculator(){
@@ -128,6 +141,7 @@ public class CalculatorController extends MenuBarController{
         used_operator="";
         used_dot=false;
         can_add=true;
+        can_add_mrc=true;
     }
 
     public void plus_minus_sqrt(ActionEvent e){
@@ -145,8 +159,110 @@ public class CalculatorController extends MenuBarController{
         else{
             result.setText(String.valueOf(Math.sqrt(num1)));
         }
+
+        used_dot=true;
         prevNum.setText("");
         can_add=false;
+    }
+    public void calc_science_functions(ActionEvent e){
+        if(result.getText().isEmpty()){
+            return;
+        }
+
+        Button button=(Button)e.getSource();
+        String val=button.getText();
+        num1 = Double.parseDouble(result.getText());
+
+        switch (val) {
+            case "n!":
+                if (num1 >= 0 && Math.ceil(num1) == Math.floor(num1)) {
+                    int frac = 1;
+                    int temp = (int) num1;
+                    if (temp < 17) {
+                        if (temp > 0) {
+                            for (int i = 1; i <= temp; i++)
+                                frac *= i;
+                        }
+                        result.setText(String.valueOf(frac));
+                    } else {
+                        result.setText("OVERFLOW");
+                    }
+                } else
+                    result.setText("BLAD");
+                break;
+            case "log":
+                result.setText(String.valueOf(Math.log10(num1)));
+                break;
+            case "|x|":
+                result.setText(String.valueOf(Math.abs(num1)));
+                break;
+            case "x^2":
+                result.setText(String.valueOf(Math.pow(num1, 2)));
+                break;
+            case "sin":
+                result.setText(String.valueOf(Math.sin(num1)));
+                break;
+            case "cos":
+                result.setText(String.valueOf(Math.cos(num1)));
+                break;
+            case "tan":
+                result.setText(String.valueOf(Math.tan(num1)));
+                break;
+            case "cot":
+                result.setText(String.valueOf(Math.cos(num1) / Math.sin(num1)));
+                break;
+        }
+
+        used_dot=true;
+        prevNum.setText("");
+        can_add=false;
+    }
+
+    // TODO: rozwiazac problem z '.' przy wybieraniu MRC, przetestować dokładnie MRC, ustawic przyciski
+    public void storage_in_memory_M(ActionEvent e) {
+        Button button=(Button)e.getSource();
+        String val=button.getText();
+
+        if(val.equals("MRC")) {
+            if(mrc_click_before){
+                visible_lable_M = false;
+                label_M.setText("");
+                mrc_click_before=false;
+            }
+            else if(can_add_mrc){
+                val = String.valueOf(num_remembered);
+
+                if(check) {
+                    result.setText("");
+                    prevNum.setText("");
+                    check = false;
+                }
+
+                if(can_add) {
+                    result.setText(result.getText() + val);
+                    prevNum.setText(prevNum.getText() + val);
+                    can_add=false;
+                }
+                mrc_click_before=true;
+            }
+        }
+        if(val.equals("M-")) {
+            num_remembered -= Double.parseDouble(result.getText());
+            if(!visible_lable_M) {
+                visible_lable_M = true;
+                label_M.setText("M");
+                mrc_click_before=false;
+            }
+        }
+        else if(val.equals("M+")) {
+            num_remembered += Double.parseDouble(result.getText());
+            if(!visible_lable_M) {
+                visible_lable_M = true;
+                label_M.setText("M");
+                mrc_click_before=false;
+            }
+        }
+
     }
 
 }
