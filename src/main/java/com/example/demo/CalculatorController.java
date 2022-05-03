@@ -202,13 +202,13 @@ public class CalculatorController extends MenuBarController{
                     result.setText("BLAD");
                 break;
             case "log":
-                result.setText(String.valueOf(Math.log10(num1)));
+                result.setText(CalcUtils.getLogString(num1));
                 break;
             case "|x|":
-                result.setText(String.valueOf(Math.abs(num1)));
+                result.setText(CalcUtils.getAbsString(num1));
                 break;
             case "x^2":
-                result.setText(String.valueOf(Math.pow(num1, 2)));
+                result.setText(CalcUtils.getPower2String(num1));
                 break;
             case "sin":
                 result.setText(String.valueOf(Math.sin(num1)));
