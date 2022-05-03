@@ -105,8 +105,6 @@ public class NoteController extends MenuBarController implements Initializable{
         }
     }
 
-
-
     @FXML
     private ContextMenu contextMenu;
     @FXML
@@ -154,8 +152,6 @@ public class NoteController extends MenuBarController implements Initializable{
     @FXML
     public AnchorPane addNotePane;
 
-
-
     public void addNewNote() {
         File file = currentPath.toFile();
         if (file.isDirectory()){
@@ -187,7 +183,10 @@ public class NoteController extends MenuBarController implements Initializable{
 
         addNotePane.setVisible(false);
         addFileName.setPromptText("New file name");
-        newNote.createNewFile();
+
+        if (!newNote.createNewFile()){
+            throw new IllegalStateException("I can't create new file!");
+        }
 
     }
     public void cancelAddNewNoteButton(){
@@ -204,7 +203,9 @@ public class NoteController extends MenuBarController implements Initializable{
         try {
             if (file.isDirectory() && Objects.requireNonNull(file.listFiles()).length > 0) {
                 for (File f : Objects.requireNonNull(file.listFiles())) {
-                    f.delete();
+                    if (!f.delete()){
+                        throw new IllegalStateException("I can't delete file!");
+                    }
                 }
             }
             Files.delete(currentPath);
@@ -215,13 +216,9 @@ public class NoteController extends MenuBarController implements Initializable{
         }
     }
 
-
     public void cancelContextMenu(){
         contextMenu.hide();
     }
-
-
-
 
     public void addNewFolder(){
         String fName = folderName.getText();
@@ -249,8 +246,6 @@ public class NoteController extends MenuBarController implements Initializable{
         folderName.setPromptText("Name of the folder");
 
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
