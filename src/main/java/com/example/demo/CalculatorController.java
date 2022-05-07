@@ -14,6 +14,8 @@ public class CalculatorController extends MenuBarController{
     private Label result;
     @FXML
     private Label labelM;
+    @FXML
+    private TextArea history;
 
     private double num1=0;
     private String usedOperator ="";
@@ -22,10 +24,8 @@ public class CalculatorController extends MenuBarController{
     private boolean canAdd =true;
     private boolean canAddMrc =true;
     private double numRemembered =0;
-    private boolean visibleLableM =false;
+    private boolean visibleLabelM =false;
     private boolean mrcClickBefore =false;
-    @FXML
-    private TextArea history;
 
     public double create(double num1, double num2, String operator) {
         switch(operator){
@@ -236,7 +236,7 @@ public class CalculatorController extends MenuBarController{
 
         if(val.equals("MRC")) {
             if(mrcClickBefore){
-                visibleLableM = false;
+                visibleLabelM = false;
                 labelM.setText("");
                 mrcClickBefore =false;
             }
@@ -259,16 +259,16 @@ public class CalculatorController extends MenuBarController{
         }
         if(val.equals("M-")) {
             numRemembered -= Double.parseDouble(result.getText());
-            if(!visibleLableM) {
-                visibleLableM = true;
+            if(!visibleLabelM) {
+                visibleLabelM = true;
                 labelM.setText("M");
                 mrcClickBefore =false;
             }
         }
         else if(val.equals("M+")) {
             numRemembered += Double.parseDouble(result.getText());
-            if(!visibleLableM) {
-                visibleLableM = true;
+            if(!visibleLabelM) {
+                visibleLabelM = true;
                 labelM.setText("M");
                 mrcClickBefore =false;
             }
