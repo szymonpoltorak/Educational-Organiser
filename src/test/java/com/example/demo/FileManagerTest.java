@@ -3,6 +3,8 @@ package com.example.demo;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -11,16 +13,24 @@ import java.nio.file.Path;
 
 public class FileManagerTest {
 
-    FileManager fileManager = new FileManager();
-    NoteController noteController = new NoteController();
+    private FileManager fileManager;
+    private NoteController noteController;
+    @BeforeEach
+    public void init_test_instances(){
+        fileManager = new FileManager();
+        noteController = new NoteController();
+    }
 
     @Test
     public void addNewFolder_test_pass(){
         //given
         String folderName = "NewTestFolder";
         File dir = new File(NoteController.notesFolder.getAbsolutePath() + "//" + folderName);
-        if(dir.exists()){dir.delete();}
         String expected = "success";
+
+        if(dir.exists()){
+            dir.delete();
+        }
 
         //when
         String result = fileManager.addNewFolderFM(folderName);
@@ -37,8 +47,11 @@ public class FileManagerTest {
         TreeItem<String> notImportantItem = new TreeItem<>();
         String path = NoteController.notesFolder.getAbsolutePath();
         File dir = new File(path + "//" + fileName);
-        if(dir.exists()){dir.delete();}
         String expected = "success";
+
+        if(dir.exists()){
+            dir.delete();
+        }
 
 
         //when
