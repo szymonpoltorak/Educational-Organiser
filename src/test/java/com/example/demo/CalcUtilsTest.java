@@ -42,4 +42,43 @@ public class CalcUtilsTest {
         //then
         Assertions.assertEquals(expected, result);
     }
+
+    @Test
+    public void getSinString_test_pass(){
+        //given
+        double radian = 1;
+        String expected = "0.8414709848078965";
+
+        //when
+        String result = CalcUtils.getSinString(radian);
+
+        //then
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void getCosString_test_pass(){
+        //given
+        double radian = 1;
+        String expected = "0.5403023058681398";
+
+        //when
+        String result = CalcUtils.getCosString(radian);
+
+        //then
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void getTanString_test_pass(){
+        //given
+        double radian = 1;
+        String expected = "1.5574077246549023";
+
+        //when
+        String result = CalcUtils.getTanString(radian);
+
+        //then
+        Assertions.assertEquals(expected, result);
+    }
 }
