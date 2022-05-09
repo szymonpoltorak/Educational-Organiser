@@ -20,12 +20,13 @@ public class FileManagerTest {
         String folderName = "NewTestFolder";
         File dir = new File(NoteController.notesFolder.getAbsolutePath() + "//" + folderName);
         if(dir.exists()){dir.delete();}
+        String expected = "success";
 
         //when
         String result = fileManager.addNewFolderFM(folderName);
 
         //then
-        Assertions.assertEquals("success", result);
+        Assertions.assertEquals(expected, result);
         dir.delete();
     }
 
@@ -37,13 +38,14 @@ public class FileManagerTest {
         String path = NoteController.notesFolder.getAbsolutePath();
         File dir = new File(path + "//" + fileName);
         if(dir.exists()){dir.delete();}
+        String expected = "success";
 
 
         //when
         String result = fileManager.addNewNoteFM(fileName, notImportantItem, path);
 
         //then
-        Assertions.assertEquals("success", result);
+        Assertions.assertEquals(expected, result);
         dir.delete();
     }
 
@@ -53,6 +55,7 @@ public class FileManagerTest {
         String folderName = "FolderToDelete";
         TreeView<String> notImportantView = noteController.notesList;
         String path = NoteController.notesFolder.getAbsolutePath() + "//" + folderName;
+        String expected = "success";
 
 
         //when
@@ -60,8 +63,8 @@ public class FileManagerTest {
         String resultDeleteFolder = fileManager.deleteFolderOrNoteFM(notImportantView, Path.of(path));
 
         //then
-        Assertions.assertEquals("success", resultDeleteFolder);
-        Assertions.assertEquals("success", resultAddNewFolder);
+        Assertions.assertEquals(expected, resultDeleteFolder);
+        Assertions.assertEquals(expected, resultAddNewFolder);
 
     }
 
