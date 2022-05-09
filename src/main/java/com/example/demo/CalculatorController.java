@@ -217,10 +217,8 @@ public class CalculatorController extends MenuBarController{
                 result.setText(CalcUtils.getCosString(num1));
                 break;
             case "tan":
-                result.setText(CalcUtils.getTanString(num1));
-                break;
             case "cot":
-                result.setText(String.valueOf(Math.cos(num1) / Math.sin(num1)));
+                result.setText(CalcUtils.getTanString(num1));
                 break;
         }
 
