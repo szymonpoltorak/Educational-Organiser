@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,12 +23,27 @@ public class NoteController extends MenuBarController implements Initializable{
     public final static File notesFolder = new File("Notes");
     public Path currentPath;
     private Path currentNote;
-
     @FXML
-    private TextField folderName;
+    public TextField folderName;
+    @FXML
+    private ContextMenu contextMenu;
+    @FXML
+    private MenuItem addNewNote;
+    @FXML
+    private MenuItem cancel;
+    @FXML
+    private MenuItem deleteNote;
+    @FXML
+    private MenuItem deleteFolder;
+    @FXML
+    private TextField addFileName;
+    @FXML
+    public AnchorPane addNotePane;
 
 
-    public void save(ActionEvent event){
+
+
+    public void save(){
         if (currentNote == null){
             return;
         }
@@ -105,20 +119,6 @@ public class NoteController extends MenuBarController implements Initializable{
         }
     }
 
-    @FXML
-    private ContextMenu contextMenu;
-    @FXML
-    private MenuItem addNewNote;
-    @FXML
-    private MenuItem cancel;
-    @FXML
-    private MenuItem deleteNote;
-    @FXML
-    private MenuItem deleteFolder;
-    @FXML
-    private TextField addFileName;
-
-
     public void contextMenuSetup(){
         if (currentPath == null) {
             deleteNote.setVisible(false);
@@ -148,10 +148,6 @@ public class NoteController extends MenuBarController implements Initializable{
         }
 
     }
-
-    @FXML
-    public AnchorPane addNotePane;
-
     public void addNewNote() {
         File file = currentPath.toFile();
         if (file.isDirectory()){
@@ -161,90 +157,60 @@ public class NoteController extends MenuBarController implements Initializable{
     public void addNewNoteButton() throws IOException {
         TreeItem<String> item = notesList.getSelectionModel().getSelectedItem();
         String newNoteName = addFileName.getText();
+        String path = String.valueOf(currentPath.toAbsolutePath());
 
-        if(Objects.equals(newNoteName, "")) {
+        FileManager fileManager = new FileManager();
+        String result = fileManager.addNewNoteFM(newNoteName, item, path);
+
+        if (Objects.equals(result, "no name given")) {
             addFileName.setPromptText("Add the name first!!!");
-            return;
         }
-
-        File newNote = new File(currentPath.toAbsolutePath() + "//" + newNoteName);
-
-        if(newNote.exists()) {
+        if (Objects.equals(result, "already exists")) {
             addFileName.setText("");
             addFileName.setPromptText("File \"" + newNoteName + "\" already exists!!!");
-            return;
         }
-
-        Image noteIcon = new Image(Objects.requireNonNull(getClass().getResource("img/note.png")).toString());
-        TreeItem<String> newItem = new TreeItem<>(newNoteName, new ImageView(noteIcon));
-
-        item.getChildren().add(newItem);
-
-
-        addNotePane.setVisible(false);
-        addFileName.setPromptText("New file name");
-
-        if (!newNote.createNewFile()){
-            throw new IllegalStateException("I can't create new file!");
+        if (Objects.equals(result, "success")) {
+            addNotePane.setVisible(false);
+            addFileName.setText("");
+            addFileName.setPromptText("New file name");
+            Image noteIcon = new Image(Objects.requireNonNull(getClass().getResource("img/note.png")).toString());
+            TreeItem<String> newItem = new TreeItem<>(newNoteName, new ImageView(noteIcon));
+            item.getChildren().add(newItem);
         }
-
     }
     public void cancelAddNewNoteButton(){
         addNotePane.setVisible(false);
     }
+    public void deleteFolderOrNote(){
+        FileManager fileManager = new FileManager();
+        String result = fileManager.deleteFolderOrNoteFM(notesList, currentPath);
 
-
-    public void deleteFolderOrNote(ActionEvent event){
-        if (notesList.getRoot().equals(notesList.getSelectionModel().getSelectedItem())){
-            System.out.println("YOU CAN'T DELETE ROOT FILE!!");
-            return;
-        }
-        File file = currentPath.toFile();
-        try {
-            if (file.isDirectory() && Objects.requireNonNull(file.listFiles()).length > 0) {
-                for (File f : Objects.requireNonNull(file.listFiles())) {
-                    if (!f.delete()){
-                        throw new IllegalStateException("I can't delete file!");
-                    }
-                }
-            }
-            Files.delete(currentPath);
+        if (Objects.equals(result, "success")){
             updateNotesList();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(6);
         }
     }
-
     public void cancelContextMenu(){
         contextMenu.hide();
     }
-
     public void addNewFolder(){
-        String fName = folderName.getText();
         Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
-        String folderPath = notesFolder.getAbsolutePath();
+        String fName = folderName.getText();
+        FileManager fileManager = new FileManager();
+        String result = fileManager.addNewFolderFM(fName);
 
-        if(Objects.equals(fName, "")) {
+        if(Objects.equals(result, "no name given")){
             folderName.setPromptText("Add the name first!!!");
-            return;
         }
-
-        File newFolder = new File(folderPath + "//" +fName);
-        if(newFolder.exists()) {
+        if(Objects.equals(result, "already exists")){
             folderName.setText("");
             folderName.setPromptText("\"" + fName + "\" already exists!!!");
-            return;
         }
-
-        TreeItem<String> rootItem = new TreeItem<>(fName, new ImageView(dirIcon));
-        notesList.getRoot().getChildren().add(rootItem);
-
-
-        newFolder.mkdir();
-
-        folderName.setPromptText("Name of the folder");
-
+        if(Objects.equals(result, "success")) {
+            TreeItem<String> rootItem = new TreeItem<>(fName, new ImageView(dirIcon));
+            notesList.getRoot().getChildren().add(rootItem);
+            folderName.setPromptText("Name of the folder");
+            folderName.setText("");
+        }
     }
 
     @Override
