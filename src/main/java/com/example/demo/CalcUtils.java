@@ -15,7 +15,7 @@ public class CalcUtils {
 
     public static String getCosString(double number) { return String.valueOf(Math.cos(number)); }
 
-    public static String getTanString(double number) { return String.valueOf(Math.sin(number)); }
+    public static String getTanString(double number) { return String.valueOf(Math.tan(number)); }
 
     public static String getCotString(double number) { return String.valueOf(Math.cos(number) / Math.sin(number)); }
 }
