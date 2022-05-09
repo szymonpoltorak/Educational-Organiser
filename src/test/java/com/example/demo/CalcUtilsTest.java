@@ -81,4 +81,45 @@ public class CalcUtilsTest {
         //then
         Assertions.assertEquals(expected, result);
     }
+
+    @Test
+    public void getCotString_test_pass(){
+        //given
+        double radian = 1;
+        String expected = "0.6420926159343308";
+
+        //when
+        String result = CalcUtils.getCotString(radian);
+
+        //then
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void getXpowerYString_test_pass(){
+        //given
+        double num1 = 8;
+        double num2 = 3;
+        String expected = "512.0";
+
+        //when
+        String result = CalcUtils.getXpowerYString(8,3);
+
+        //then
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void getSqrtString_test_pass(){
+        //given
+        double num1 = 1024;
+        String expected = "32.0";
+
+        //when
+        String result = CalcUtils.getSqrtString(num1);
+
+        //then
+        Assertions.assertEquals(expected, result);
+    }
+
 }

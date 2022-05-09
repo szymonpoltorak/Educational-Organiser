@@ -18,4 +18,9 @@ public class CalcUtils {
     public static String getTanString(double number) { return String.valueOf(Math.tan(number)); }
 
     public static String getCotString(double number) { return String.valueOf(Math.cos(number) / Math.sin(number)); }
+
+    public static String getXpowerYString(double number1, double number2) { return String.valueOf(Math.pow(number1, number2)); }
+
+    public static String getSqrtString(double number) { return String.valueOf(Math.sqrt(number)); }
+
 }
