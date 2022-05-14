@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import org.jetbrains.annotations.NotNull;
 
 public class CalculatorController extends MenuBarController{
 
@@ -27,7 +28,7 @@ public class CalculatorController extends MenuBarController{
     private boolean visibleLabelM =false;
     private boolean mrcClickBefore =false;
 
-    public double create(double num1, double num2, String operator) {
+    public double create(double num1, double num2, @NotNull String operator) {
         switch(operator){
             case "+": return num1+num2;
 
@@ -85,7 +86,7 @@ public class CalculatorController extends MenuBarController{
         canAddMrc =false;
     }
 
-    public void operatorCompute(ActionEvent e){
+    public void operatorCompute(@NotNull ActionEvent e){
         Button button=(Button)e.getSource();
         String value=button.getText();
 

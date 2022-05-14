@@ -20,7 +20,7 @@ public class NoteController extends MenuBarController implements Initializable{
     private TextArea notesArea;
     @FXML
     public TreeView<String> notesList;
-    public final static File notesFolder = new File("Notes");
+    public static final File notesFolder = new File("Notes");
     public Path currentPath;
     private Path currentNote;
     @FXML
@@ -39,9 +39,6 @@ public class NoteController extends MenuBarController implements Initializable{
     private TextField addFileName;
     @FXML
     public AnchorPane addNotePane;
-
-
-
 
     public void save(){
         if (currentNote == null){
@@ -85,8 +82,8 @@ public class NoteController extends MenuBarController implements Initializable{
 
         try {
             notesArea.setText(String.join("\n", Files.readAllLines(currentNote)));
-        } catch (IOException NoSuchFileException){
-            NoSuchFileException.printStackTrace();
+        } catch (IOException exception){
+            exception.printStackTrace();
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Cannot open the file.");
             error.setContentText("To open newly created file, program must be restarted.");
@@ -148,12 +145,14 @@ public class NoteController extends MenuBarController implements Initializable{
         }
 
     }
+
     public void addNewNote() {
         File file = currentPath.toFile();
         if (file.isDirectory()){
             addNotePane.setVisible(true);
         }
     }
+
     public void addNewNoteButton() throws IOException {
         TreeItem<String> item = notesList.getSelectionModel().getSelectedItem();
         String newNoteName = addFileName.getText();
@@ -178,9 +177,11 @@ public class NoteController extends MenuBarController implements Initializable{
             item.getChildren().add(newItem);
         }
     }
+
     public void cancelAddNewNoteButton(){
         addNotePane.setVisible(false);
     }
+
     public void deleteFolderOrNote(){
         FileManager fileManager = new FileManager();
         String result = fileManager.deleteFolderOrNoteFM(notesList, currentPath);
@@ -189,9 +190,11 @@ public class NoteController extends MenuBarController implements Initializable{
             updateNotesList();
         }
     }
+
     public void cancelContextMenu(){
         contextMenu.hide();
     }
+
     public void addNewFolder(){
         Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
         String fName = folderName.getText();
@@ -220,6 +223,5 @@ public class NoteController extends MenuBarController implements Initializable{
 
         notesList.setRoot(treeRoot);
         updateNotesList();
-
     }
 }

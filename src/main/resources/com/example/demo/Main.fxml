@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
    <children>
       <Label layoutX="206.0" layoutY="14.0" prefHeight="51.0" prefWidth="128.0" text="To jest Main">
          <font>
@@ -21,9 +21,9 @@
                   <Image url="@img/Icon_Main_open.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/no_image.png" />
+                  <Image url="@img/toDoIcon.png" />
                </image></ImageView>
             <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
