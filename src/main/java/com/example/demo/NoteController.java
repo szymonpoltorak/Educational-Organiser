@@ -40,9 +40,6 @@ public class NoteController extends MenuBarController implements Initializable{
     @FXML
     public AnchorPane addNotePane;
 
-
-
-
     public void save(){
         if (currentNote == null){
             return;
@@ -148,12 +145,14 @@ public class NoteController extends MenuBarController implements Initializable{
         }
 
     }
+
     public void addNewNote() {
         File file = currentPath.toFile();
         if (file.isDirectory()){
             addNotePane.setVisible(true);
         }
     }
+
     public void addNewNoteButton() throws IOException {
         TreeItem<String> item = notesList.getSelectionModel().getSelectedItem();
         String newNoteName = addFileName.getText();
@@ -178,9 +177,11 @@ public class NoteController extends MenuBarController implements Initializable{
             item.getChildren().add(newItem);
         }
     }
+
     public void cancelAddNewNoteButton(){
         addNotePane.setVisible(false);
     }
+
     public void deleteFolderOrNote(){
         FileManager fileManager = new FileManager();
         String result = fileManager.deleteFolderOrNoteFM(notesList, currentPath);
@@ -189,9 +190,11 @@ public class NoteController extends MenuBarController implements Initializable{
             updateNotesList();
         }
     }
+
     public void cancelContextMenu(){
         contextMenu.hide();
     }
+
     public void addNewFolder(){
         Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
         String fName = folderName.getText();
@@ -220,6 +223,5 @@ public class NoteController extends MenuBarController implements Initializable{
 
         notesList.setRoot(treeRoot);
         updateNotesList();
-
     }
 }

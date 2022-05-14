@@ -1,11 +1,8 @@
 package com.example.demo;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +11,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 public class FileManager {
-    NoteController noteController = new NoteController();
+    private NoteController noteController = new NoteController();
 
     public String addNewFolderFM(String folderName){
 
@@ -36,9 +33,9 @@ public class FileManager {
 
         return "success";
     }
-    public String addNewNoteFM(String newNoteName, TreeItem<String> item, String currentPath) throws IOException {
+    public String addNewNoteFM(@NotNull String newNoteName, TreeItem<String> item, String currentPath) throws IOException {
 
-        if(newNoteName == ""){
+        if(newNoteName.equals("")){
             return "no name given";
         }
 
@@ -56,7 +53,7 @@ public class FileManager {
 
     }
 
-    public String deleteFolderOrNoteFM(TreeView<String> notesList, Path currentPath){
+    public String deleteFolderOrNoteFM(TreeView<String> notesList, @NotNull Path currentPath){
         File file = currentPath.toFile();
         try {
             if (file.isDirectory() && Objects.requireNonNull(file.listFiles()).length > 0) {

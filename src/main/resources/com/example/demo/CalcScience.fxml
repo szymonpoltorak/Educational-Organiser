@@ -18,9 +18,9 @@
                   <Image url="@img/Icon_Main_closed.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/no_image.png" />
+                  <Image url="@img/toDoIcon.png" />
                </image></ImageView>
             <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                <image>

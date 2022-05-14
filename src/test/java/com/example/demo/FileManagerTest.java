@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class FileManagerTest {
+class FileManagerTest {
 
     private FileManager fileManager;
     private NoteController noteController;
@@ -22,7 +22,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void addNewFolder_test_pass(){
+    void addNewFolder_test_pass(){
         //given
         String folderName = "NewTestFolder";
         File dir = new File(NoteController.notesFolder.getAbsolutePath() + "//" + folderName);
@@ -41,7 +41,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void addNewNote_test_pass() throws IOException {
+    void addNewNote_test_pass() throws IOException {
         //given
         String fileName = "NewTestFile";
         TreeItem<String> notImportantItem = new TreeItem<>();
@@ -63,7 +63,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void deleteFolderOrNoteFM_test_pass() {
+    void deleteFolderOrNoteFM_test_pass() {
         //given
         String folderName = "FolderToDelete";
         TreeView<String> notImportantView = noteController.notesList;
