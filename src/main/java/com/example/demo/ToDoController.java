@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -18,8 +17,6 @@ public class ToDoController extends MenuBarController implements Initializable {
     @FXML
     private Label mainLabel;
     @FXML
-    private ScrollPane taskPane;
-    @FXML
     private TitledPane titlePane;
     @FXML
     private ListView<String> taskList;
@@ -31,6 +28,8 @@ public class ToDoController extends MenuBarController implements Initializable {
     private TextArea taskNote;
     @FXML
     private Button saveButton;
+    @FXML
+    private TextField taskName;
     private File tasksFolder;
 
     @Override
@@ -49,17 +48,42 @@ public class ToDoController extends MenuBarController implements Initializable {
         ToDoController.showCurrentTasks(taskList, tasksFolder);
 
         taskList.setOnMouseClicked(event -> {
-            String currentTask = taskList.getSelectionModel().getSelectedItem();
+            var currentTask = taskList.getSelectionModel().getSelectedItem();
 
             titlePane.setText(currentTask);
             taskNote.setEditable(true);
             try {
                 taskNote.setText(ToDoController.getTaskNote(currentTask, tasksFolder));
             } catch (IOException exception) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("IOexception!");
-                alert.setContentText("Input Output exception occurred in method!");
-                alert.show();
+                ToDoController.ioExceptionError();
+            }
+        });
+
+        addButton.setOnMouseClicked(event -> {
+            var task = taskName.getText();
+            var newTask = new File(tasksFolder.toPath() + "//" + task + ".txt");
+
+            if (task.equals("")) {
+                var warning = new Alert(Alert.AlertType.WARNING);
+                warning.setTitle("Warning");
+                warning.setHeaderText("Null task.");
+                warning.setContentText("You have not given any task!");
+                warning.show();
+            }
+            else if (!newTask.exists()){
+                try {
+                    newTask.createNewFile();
+                    taskList.getItems().add(task);
+                } catch (IOException e) {
+                    ToDoController.ioExceptionError();
+                }
+            }
+            else {
+                var warning = new Alert(Alert.AlertType.WARNING);
+                warning.setTitle("Warning");
+                warning.setHeaderText("File exists!");
+                warning.setContentText("The task with such name already exist!");
+                warning.show();
             }
         });
     }
@@ -76,7 +100,7 @@ public class ToDoController extends MenuBarController implements Initializable {
     }
 
     public static String getTaskNote(String currentTask, @NotNull File tasksFolder) throws IOException {
-        String note = "";
+        var note = "";
 
         for (File file : Objects.requireNonNull(tasksFolder.listFiles())){
             var task = ToDoController.getProperString(file.toString());
@@ -87,6 +111,14 @@ public class ToDoController extends MenuBarController implements Initializable {
         }
 
         return note;
+    }
+
+    public static void ioExceptionError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("IOexception!");
+        alert.setHeaderText("During runtime error occurred.");
+        alert.setContentText("Input Output exception occurred in method!");
+        alert.show();
     }
 
     public static @NotNull String getProperString(@NotNull String task){
