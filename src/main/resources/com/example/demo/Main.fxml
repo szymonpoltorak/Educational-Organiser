@@ -5,67 +5,112 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
    <children>
       <Label layoutX="206.0" layoutY="14.0" prefHeight="51.0" prefWidth="128.0" text="To jest Main">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <FlowPane orientation="VERTICAL" prefHeight="320.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <FlowPane orientation="VERTICAL" prefHeight="402.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="iconMain" fitHeight="40.0" fitWidth="600.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/Icon_Main_open.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image></ImageView>
-            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image></ImageView>
-            <ImageView fx:id="iconCalc" fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/Icon_Calc_closed.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image></ImageView>
-            <ImageView fx:id="iconNote" fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/Icon_Note_closed.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image></ImageView>
-            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image>
-            </ImageView>
+            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: E5E5E5;">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/menu_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/to_do.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/calendar_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/calculator_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/timer_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/notes_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/icon-park_average.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/uil_schedule.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </FlowPane>
-      <FlowPane alignment="BOTTOM_LEFT" layoutY="320.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="320.0">
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="395.0" orientation="VERTICAL" prefHeight="105.0" prefWidth="48.0" style="-fx-background-color: C4C4C4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="395.0">
          <children>
-            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/no_image.png" />
-               </image>
-            </ImageView>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/ic_round-account-circle.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/settings_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </FlowPane>
    </children>
