@@ -20,7 +20,7 @@ public class NoteController extends MenuBarController implements Initializable{
     private TextArea notesArea;
     @FXML
     public TreeView<String> notesList;
-    public final static File notesFolder = new File("Notes");
+    public static final File notesFolder = new File("Notes");
     public Path currentPath;
     private Path currentNote;
     @FXML
