@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -42,7 +43,6 @@ public class ToDoController extends MenuBarController implements Initializable {
         completeButton.setText("Complete Task");
         saveButton.setText("Save");
         titlePane.setText("Choose your task!");
-        taskNote.setText("Tutaj bedzie notatka do zadania");
         taskNote.setEditable(false);
 
         ToDoController.showCurrentTasks(taskList, tasksFolder);
@@ -86,6 +86,25 @@ public class ToDoController extends MenuBarController implements Initializable {
                 warning.show();
             }
         });
+
+        saveButton.setOnMouseClicked(event -> {
+            if (taskNote.getText() == null || taskNote.getText().equals("")){
+                var info = new Alert(Alert.AlertType.INFORMATION);
+                titlePane.setText("Choose your task!");
+                info.setTitle("Info");
+                info.setHeaderText("Nothing to do.");
+                info.setContentText("There is no text to be inserted.");
+                info.show();
+            }
+            else {
+                Path currentTaskNote = Path.of(tasksFolder.getPath() + "//" + taskList.getSelectionModel().getSelectedItem() + ".txt");
+                try {
+                    Files.writeString(currentTaskNote, taskNote.getText());
+                } catch (IOException e) {
+                    ToDoController.ioExceptionError();
+                }
+            }
+        });
     }
 
     public static void showCurrentTasks(@NotNull ListView<String> taskList, @NotNull File tasksFolder){
@@ -115,7 +134,7 @@ public class ToDoController extends MenuBarController implements Initializable {
 
     public static void ioExceptionError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("IOexception!");
+        alert.setTitle("IOException!");
         alert.setHeaderText("During runtime error occurred.");
         alert.setContentText("Input Output exception occurred in method!");
         alert.show();

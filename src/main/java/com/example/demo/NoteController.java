@@ -82,8 +82,8 @@ public class NoteController extends MenuBarController implements Initializable{
 
         try {
             notesArea.setText(String.join("\n", Files.readAllLines(currentNote)));
-        } catch (IOException NoSuchFileException){
-            NoSuchFileException.printStackTrace();
+        } catch (IOException exception){
+            exception.printStackTrace();
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText("Cannot open the file.");
             error.setContentText("To open newly created file, program must be restarted.");

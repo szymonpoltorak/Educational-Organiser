@@ -14,7 +14,6 @@ public class FileManager {
     private NoteController noteController = new NoteController();
 
     public String addNewFolderFM(String folderName){
-
         String fName = folderName;
         String folderPath = NoteController.notesFolder.getAbsolutePath();
 
@@ -34,7 +33,6 @@ public class FileManager {
         return "success";
     }
     public String addNewNoteFM(@NotNull String newNoteName, TreeItem<String> item, String currentPath) throws IOException {
-
         if(newNoteName.equals("")){
             return "no name given";
         }
