@@ -227,7 +227,7 @@ public class CalculatorController extends MenuBarController{
         canAdd =false;
     }
 
-    // TODO: rozwiazac problem z '.' przy wybieraniu MRC, przetestować dokładnie MRC, ustawic przyciski
+    //TODO: rozwiazac problem z '.' przy wybieraniu MRC, przetestować dokładnie MRC, ustawic przyciski
     public void storageInMemoryM(ActionEvent e) {
         Button button=(Button)e.getSource();
         String val=button.getText();

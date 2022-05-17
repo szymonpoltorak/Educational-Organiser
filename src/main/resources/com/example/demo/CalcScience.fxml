@@ -31,7 +31,7 @@
                   <Image url="@img/Icon_Calc_open.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToTimerScene" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/no_image.png" />
                </image></ImageView>

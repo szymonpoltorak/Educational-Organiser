@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.CalcUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
