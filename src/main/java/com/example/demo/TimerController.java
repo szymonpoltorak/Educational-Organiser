@@ -2,16 +2,16 @@ package com.example.demo;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class TimerController extends MenuBarController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    private  boolean canRun =true;
-    private static int seriesCounter = 0;
-    private final Timer timer = new Timer();
-    private boolean isFirstStart=true;
+public class TimerController extends MenuBarController implements Initializable {
+
     @FXML
     private TextField focusTime;
 
@@ -31,6 +31,19 @@ public class TimerController extends MenuBarController {
 
     @FXML
     private TextField series;
+
+    private  boolean canRun;
+    private static int seriesCounter;
+    private Timer timer;
+    private boolean isFirstStart;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        canRun =true;
+        seriesCounter = 0;
+        timer = new Timer();
+        isFirstStart=true;
+    }
 
     class Timer extends AnimationTimer {
         private long timestamp;
@@ -217,7 +230,7 @@ public class TimerController extends MenuBarController {
     }
 
     public boolean checkIfReset(){
-        return canRun && isFirstStart && seriesCounter==0;
+        return !canRun && !isFirstStart && seriesCounter==0;
     }
 
 }
