@@ -58,4 +58,16 @@ public class MenuBarController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void switchToTimerScene (MouseEvent event) {
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Timer.fxml")));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
