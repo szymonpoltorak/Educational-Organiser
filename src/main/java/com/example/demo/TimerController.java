@@ -107,7 +107,7 @@ public class TimerController extends MenuBarController implements Initializable 
 
         public void changeView(){
             if(seriesCounter==Integer.parseInt(series.getText())*2-1){
-                String currentHistory = notification.getText() + "You have completed the whole time! Congratulations";
+                String currentHistory = notification.getText() + "You have completed the whole time! Congratulations\n";
 
                 notification.setText(currentHistory);
                 time=0;
