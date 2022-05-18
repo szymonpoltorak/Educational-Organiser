@@ -1,14 +1,18 @@
 package com.example.demo;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class SchoolTimetableController extends MenuBarController {
@@ -17,15 +21,13 @@ public class SchoolTimetableController extends MenuBarController {
     AnchorPane timetableBox;
     @FXML
     Pane contextPane;
-  //  @FXML
-   // GridPane gridPane;
 
-    public void initialize(){
+    public void initialize() throws IOException {
 
         GridPane gridPane = new GridPane();
 
-        gridPane.setVgap(5);
-        gridPane.setHgap(5);
+        gridPane.setVgap(2);
+        gridPane.setHgap(2);
 
         gridPane.add(new Text("Poniedziałek"), 1, 0);
         gridPane.add(new Text("Wtorek"), 2, 0);
@@ -44,20 +46,60 @@ public class SchoolTimetableController extends MenuBarController {
         gridPane.add(new Text("17:15 - 18:00"), 0, 10);
 
         ArrayList<TextArea> lessonArea = new ArrayList<TextArea>(50);
+        File lessons = new File("src/main/resources/com/example/demo/schoolTimetableDB/lessons");
+        BufferedReader br = new BufferedReader(new FileReader(lessons));
 
+        ArrayList<String> lessonsHolder = new ArrayList<String>(50);
 
-       // TextArea lessonArea = new TextArea();
-       // lessonArea.setText("Bazy danych");
         int numBlock=0;
         for(int i=1; i<6; i++) {
             for(int j=1; j<11; j++) {
-                lessonArea.add(new TextArea());
-                lessonArea.get(numBlock).setText("");
-                lessonArea.get(numBlock).setMaxSize(120,40);
+                lessonArea.add(new TextArea(""));
+                String line;
+                if ((line = br.readLine()) != null) {
+                    if(line.length() != 1)
+                        lessonArea.get(numBlock).setText(line.substring(1));
+                    lessonsHolder.add(""+line);
+                }
+
+                lessonArea.get(numBlock).setMaxSize(130,44);
                 lessonArea.get(numBlock).setWrapText(true);
                 lessonArea.get(numBlock).setStyle("-fx-control-inner-background: #58508d");
                 lessonArea.get(numBlock).setEditable(false);
-                lessonArea.get(numBlock).setOnMouseClicked(lessonClickedAction(lessonArea.get(numBlock)));
+                int finalNumBlock = numBlock;
+                lessonArea.get(numBlock).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                            if(mouseEvent.getClickCount() == 2){
+                                lessonArea.get(finalNumBlock).setEditable(true);
+                            }
+                        }
+                    }
+                });
+                lessonArea.get(numBlock).focusedProperty().addListener(new ChangeListener<Boolean>()
+                {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+                    {
+                        if (newPropertyValue) {}
+                        else
+                        {
+                            System.out.println("hej");
+                            lessonArea.get(finalNumBlock).setEditable(false);
+                            lessonsHolder.set(finalNumBlock, "#"+lessonArea.get(finalNumBlock).getText());
+                            try {
+                                FileWriter fileWriter = new FileWriter("src/main/resources/com/example/demo/schoolTimetableDB/lessons", false);
+                                for(int i=0; i<50; i++) {
+                                    fileWriter.write(lessonsHolder.get(i).replaceAll("[\\t\\n\\r]+"," ")+"\n");
+                                }
+                                fileWriter.close();
+                            } catch (IOException e) {
+                                System.out.println("Something wrong with write lessons to file database");
+                            }
+                        }
+                    }
+                });
 
                 gridPane.add(lessonArea.get(numBlock), i,j);
                 numBlock++;
@@ -69,9 +111,5 @@ public class SchoolTimetableController extends MenuBarController {
 
     }
 
-    private EventHandler<? super MouseEvent> lessonClickedAction(TextArea lesson) {
-        lesson.setEditable(true);
-        return null;
-    }
 
 }
