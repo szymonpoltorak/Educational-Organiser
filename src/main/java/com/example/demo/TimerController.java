@@ -147,6 +147,7 @@ public class TimerController extends MenuBarController {
 
     public void startTimerHandler(){
         if(seriesCounter%2==0) {
+
             if (canRun && isFirstStart) {
                 canRun = false;
                 type.setText("Focus time");
@@ -163,7 +164,9 @@ public class TimerController extends MenuBarController {
             } else {
                 timer.start();
             }
+
         }
+
         else {
             if (canRun && isFirstStart) {
                 canRun = false;
