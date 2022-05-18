@@ -10,6 +10,8 @@ public class TimerController extends MenuBarController {
 
     private  boolean canRun =true;
     private static int seriesCounter = 0;
+    private final Timer timer = new Timer();
+    private boolean isFirstStart=true;
     @FXML
     private TextField focusTime;
 
@@ -142,9 +144,6 @@ public class TimerController extends MenuBarController {
 
     }
 
-    private final Timer timer = new Timer();
-    private boolean isFirstStart=true;
-
     public void startTimerHandler(){
         if(seriesCounter%2==0) {
 
@@ -215,6 +214,10 @@ public class TimerController extends MenuBarController {
         canRun = true;
         timer.stop();
 
+    }
+
+    public boolean checkIfReset(){
+        return canRun && isFirstStart && seriesCounter==0;
     }
 
 }
