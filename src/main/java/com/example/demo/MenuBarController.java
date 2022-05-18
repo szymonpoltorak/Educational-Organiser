@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.Objects;
 
-public class MenuBarController {
+public class MenuBarController{
     @FXML
     private Stage stage;
     private Scene scene;
