@@ -106,13 +106,16 @@ public class TimerController extends MenuBarController implements Initializable 
         }
 
         public void changeView(){
-            if(seriesCounter==Integer.parseInt(series.getText())){
+            if(seriesCounter==Integer.parseInt(series.getText())*2-1){
                 String currentHistory = notification.getText() + "You have completed the whole time! Congratulations";
 
                 notification.setText(currentHistory);
                 time=0;
+                currentSeconds=0;
+                currentMinutes=0;
                 canRun=true;
                 isFirstStart=true;
+                seriesCounter=0;
 
                 minute.setText(focusTime.getText());
                 second.setText("0");
@@ -127,6 +130,8 @@ public class TimerController extends MenuBarController implements Initializable 
 
             isFirstStart=true;
             canRun=true;
+            currentSeconds=0;
+            currentMinutes=0;
 
             timer.stop();
             startTimerHandler();
@@ -164,7 +169,7 @@ public class TimerController extends MenuBarController implements Initializable 
                 canRun = false;
                 type.setText("Focus time");
 
-                int minutes = Integer.parseInt(minute.getText()) - 1;
+                int minutes = Integer.parseInt(focusTime.getText()) - 1;
                 minute.setText(Integer.toString(minutes));
                 String notificationHistory = notification.getText() + "Started counting! The timer will be in focus mode for: "+focusTime.getText()+" minutes"+"\n";
                 notification.setText(notificationHistory);
