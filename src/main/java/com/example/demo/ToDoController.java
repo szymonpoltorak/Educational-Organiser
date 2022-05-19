@@ -1,13 +1,14 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,11 +32,23 @@ public class ToDoController extends MenuBarController implements Initializable {
     private Button saveButton;
     @FXML
     private TextField taskName;
+    @FXML
+    private ListView<TextField> priorityList;
     private File tasksFolder;
+
+
+    @FXML
+    private ChoiceBox taskPriorityChoiceBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         tasksFolder = new File("Tasks");
+
+        TaskPriority taskPriority = new TaskPriority();
+
+        ObservableList<Integer> priorityList = taskPriorityChoiceBox.getItems();
+        priorityList.addAll(1,2,3);
+
 
         mainLabel.setText("To Do");
         taskList.setOrientation(Orientation.VERTICAL);
@@ -104,7 +117,11 @@ public class ToDoController extends MenuBarController implements Initializable {
                     ToDoController.ioExceptionError();
                 }
             }
+
+            taskPriority.addPriority(taskList.getSelectionModel().getSelectedItem(), taskPriorityChoiceBox);
+
         });
+
     }
 
     public static void showCurrentTasks(@NotNull ListView<String> taskList, @NotNull File tasksFolder){
@@ -117,6 +134,8 @@ public class ToDoController extends MenuBarController implements Initializable {
             }
         }
     }
+
+
 
     public static String getTaskNote(String currentTask, @NotNull File tasksFolder) throws IOException {
         var note = "";
@@ -143,5 +162,6 @@ public class ToDoController extends MenuBarController implements Initializable {
     public static @NotNull String getProperString(@NotNull String task){
         return task.substring(task.indexOf("\\") + 1, task.indexOf("."));
     }
+
 
 }
