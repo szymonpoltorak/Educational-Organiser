@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MenuBarController">
+<AnchorPane fx:id="timetableBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SchoolTimetableController">
    <children>
       <FlowPane orientation="VERTICAL" prefHeight="320.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,7 +28,7 @@
                   <Image url="@img/Icon_Calc_closed.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToTimerScene" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/no_image.png" />
                </image></ImageView>
@@ -63,14 +62,6 @@
             </ImageView>
          </children>
       </FlowPane>
-      <ImageView fx:id="mainImage" fitHeight="453.0" fitWidth="693.0" layoutX="76.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/main_page.jpg" />
-         </image></ImageView>
-      <Label alignment="CENTER" layoutX="40.0" layoutY="6.0" prefHeight="40.0" prefWidth="754.0" text="Welcome Student!">
-         <font>
-            <Font name="Verdana" size="25.0" />
-         </font>
-      </Label>
+      <Pane fx:id="contextPane" layoutX="49.0" layoutY="12.0" prefHeight="480.0" prefWidth="743.0" />
    </children>
 </AnchorPane>

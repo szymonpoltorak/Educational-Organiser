@@ -59,6 +59,15 @@ public class MenuBarController{
         stage.show();
     }
 
+    public void switchToSchoolTimetable(@NotNull MouseEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SchoolTimetable.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void switchToTimerScene (MouseEvent event) {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Timer.fxml")));
@@ -69,5 +78,6 @@ public class MenuBarController{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
