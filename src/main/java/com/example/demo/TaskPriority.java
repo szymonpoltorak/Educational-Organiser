@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -22,7 +21,7 @@ public class TaskPriority {
             warning.setContentText("You have not chosen any task! Select task to change priority.");
             warning.show();
         }
-        else if (isAlreadyInPriorities(taskName) == true){
+        else if (isAlreadyInPriorities(taskName)){
             changePriority(taskName, priority);
         }
         else {
@@ -32,7 +31,7 @@ public class TaskPriority {
         colorPriority(priorityList);
     }
 
-    public static void addPriority(String taskName, ChoiceBox<TextField> taskPriorityChoiceBox) throws FileNotFoundException {
+    public static void addPriority(String taskName, ChoiceBox<TextField> taskPriorityChoiceBox) {
 
         String taskNameWithoutSpaces;
 
@@ -88,7 +87,7 @@ public class TaskPriority {
 
         Scanner wholeFile = new Scanner(priorities);
         Scanner findTask = new Scanner(priorities);
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         String lineToChange = null;
         String taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
@@ -96,7 +95,7 @@ public class TaskPriority {
         String priorityFromFile;
 
         while (wholeFile.hasNextLine()) {
-            buffer.append(wholeFile.nextLine()+System.lineSeparator());
+            buffer.append(wholeFile.nextLine()).append(System.lineSeparator());
         }
         String fileContents = buffer.toString();
         wholeFile.close();
@@ -110,6 +109,7 @@ public class TaskPriority {
         }
         String newLine = taskName.replaceAll(" ", "_") + " " + priority;
 
+        assert lineToChange != null;
         fileContents = fileContents.replaceAll(lineToChange, newLine);
 
         fileWriter = new FileWriter(priorities);
@@ -122,15 +122,13 @@ public class TaskPriority {
         priorityList.getItems().clear();
 
         String priority = "";
-        String fileName = "";
         String current;
         int index = 0;
 
         Scanner getPriority = new Scanner(priorities);
 
         while(getPriority.hasNext()) {
-            current = getPriority.next();
-            fileName = current;
+            getPriority.next(); //it's the file name which is not needed now
             current = getPriority.next();
             priority = current;
 
@@ -155,12 +153,12 @@ public class TaskPriority {
 
     public static void sortTasks() throws IOException {
 
-        String priorityEquals3 = "";
-        String priorityEquals2 = "";
-        String priorityEquals1 = "";
+        StringBuilder priorityEquals3 = new StringBuilder();
+        StringBuilder priorityEquals2 = new StringBuilder();
+        StringBuilder priorityEquals1 = new StringBuilder();
         String current;
-        String fileName = null;
-        String priority = null;
+        String fileName;
+        String priority;
         String newFileText;
 
         Scanner getPriority = new Scanner(priorities);
@@ -172,17 +170,17 @@ public class TaskPriority {
             priority = current;
 
             if(priority.equals("1")){
-                priorityEquals1 += fileName + " " + priority + "\n";
+                priorityEquals1.append(fileName).append(" ").append(priority).append("\n");
             }
             if(priority.equals("2")){
-                priorityEquals2 += fileName + " " + priority + "\n";
+                priorityEquals2.append(fileName).append(" ").append(priority).append("\n");
             }
             if(priority.equals("3")){
-                priorityEquals3 += fileName + " " + priority + "\n";
+                priorityEquals3.append(fileName).append(" ").append(priority).append("\n");
             }
         }
 
-        newFileText = priorityEquals3 + priorityEquals2 + priorityEquals1;
+        newFileText = priorityEquals3 + priorityEquals2.toString() + priorityEquals1;
 
         getPriority.close();
         fileWriter = new FileWriter(priorities);
@@ -198,18 +196,14 @@ public class TaskPriority {
         Integer priority = null;
 
         taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
-        while (findTask.hasNext()){
+        while (findTask.hasNext()) {
             final String lineFromFile = findTask.next();
-            if(lineFromFile.contains(taskNameWithoutSpaces)){
+            if (lineFromFile.contains(taskNameWithoutSpaces)) {
                 priority = Integer.valueOf(findTask.next());
             }
         }
         findTask.close();
         return priority;
-
-    }
-
-    public void updateTaskList(){
 
     }
 
