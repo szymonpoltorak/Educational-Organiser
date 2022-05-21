@@ -235,7 +235,7 @@ public class NoteController extends MenuBarController implements Initializable{
 
         ObservableList<Integer> fontSizeList = fontSizeChoiceBox.getItems();
 
-        for(int fontSize = 10; fontSize <= 50; fontSize++){
+        for(int fontSize = 10; fontSize <= 50; fontSize += 2){
             fontSizeList.add(fontSize);
         }
 
@@ -245,9 +245,6 @@ public class NoteController extends MenuBarController implements Initializable{
                 ).toExternalForm()
         );
 
-        notesList.setRoot(treeRoot);
-        updateNotesList();
-
         fontSizeChoiceBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -255,6 +252,9 @@ public class NoteController extends MenuBarController implements Initializable{
             }
         });
 
+
+        notesList.setRoot(treeRoot);
+        updateNotesList();
 
     }
 }
