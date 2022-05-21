@@ -196,30 +196,41 @@ public class CalculatorController extends MenuBarController{
                                 frac *= i;
                         }
                         result.setText(String.valueOf(frac));
+                        history.appendText(num1+"! = "+ frac +"\n");
                     } else {
                         result.setText("OVERFLOW");
                     }
                 } else
                     result.setText("BLAD");
+                //history.appendText("BLAD" );
                 break;
             case "log":
                 result.setText(CalcUtils.getLogString(num1));
+                history.appendText("log("+num1+")"+" = " + CalcUtils.getLogString(num1) +"\n" );
                 break;
             case "|x|":
                 result.setText(CalcUtils.getAbsString(num1));
+                history.appendText("|"+num1+"| = "+ CalcUtils.getAbsString(num1)+"\n");
                 break;
             case "x^2":
                 result.setText(CalcUtils.getPower2String(num1));
+                history.appendText("("+num1+")^2 = "+ CalcUtils.getPower2String(num1)+"\n");
                 break;
             case "sin":
                 result.setText(CalcUtils.getSinString(num1));
+                history.appendText("sin("+num1+") = "+ CalcUtils.getSinString(num1)+"\n");
                 break;
             case "cos":
                 result.setText(CalcUtils.getCosString(num1));
+                history.appendText("cos("+num1+") = "+ CalcUtils.getCosString(num1)+"\n");
                 break;
             case "tan":
-            case "cot":
                 result.setText(CalcUtils.getTanString(num1));
+                history.appendText("tan("+num1+") = "+ CalcUtils.getTanString(num1)+"\n");
+                break;
+            case "cot":
+                result.setText(CalcUtils.getCotString(num1));
+                history.appendText("cot("+num1+") = "+ CalcUtils.getCotString(num1)+"\n");
                 break;
         }
 
