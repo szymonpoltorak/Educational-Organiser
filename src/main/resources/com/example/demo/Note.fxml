@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.NoteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.NoteController">
    <children>
       <Label layoutX="206.0" layoutY="14.0" prefHeight="51.0" prefWidth="327.0" text="Notes">
          <font>
@@ -40,7 +40,7 @@
                   <Image url="@img/Icon_Calc_closed.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToTimerScene" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/no_image.png" />
                </image></ImageView>
@@ -53,9 +53,9 @@
                <image>
                   <Image url="@img/no_image.png" />
                </image></ImageView>
-            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSchoolTimetable" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/no_image.png" />
+                  <Image url="@img/Icon_Timetable_open.png" />
                </image>
             </ImageView>
          </children>

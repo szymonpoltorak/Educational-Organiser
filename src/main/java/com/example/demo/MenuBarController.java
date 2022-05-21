@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.Objects;
 
-public class MenuBarController {
+public class MenuBarController{
     @FXML
     private Stage stage;
     private Scene scene;
@@ -57,5 +57,27 @@ public class MenuBarController {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void switchToSchoolTimetable(@NotNull MouseEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SchoolTimetable.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToTimerScene (MouseEvent event) {
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Timer.fxml")));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
