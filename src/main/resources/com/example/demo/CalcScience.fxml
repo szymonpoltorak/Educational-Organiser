@@ -36,7 +36,7 @@
                   <Image url="@img/Icon_Note_closed.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToAverage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/no_image.png" />
                </image></ImageView>
