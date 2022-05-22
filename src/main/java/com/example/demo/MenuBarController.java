@@ -68,6 +68,15 @@ public class MenuBarController{
         stage.show();
     }
 
+    public void switchToAverage(@NotNull MouseEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Average.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void switchToTimerScene (MouseEvent event) {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Timer.fxml")));
@@ -80,4 +89,6 @@ public class MenuBarController{
         }
 
     }
+
+
 }

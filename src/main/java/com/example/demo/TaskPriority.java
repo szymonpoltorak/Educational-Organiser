@@ -128,7 +128,7 @@ public class TaskPriority {
         Scanner getPriority = new Scanner(priorities);
 
         while(getPriority.hasNext()) {
-            getPriority.next(); //it's the file name which is not needed now
+            getPriority.next();
             current = getPriority.next();
             priority = current;
 

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="timetableBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AverageController">
+   <children>
+      <FlowPane orientation="VERTICAL" prefHeight="320.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="iconMain" fitHeight="40.0" fitWidth="600.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Main_open.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/toDoIcon.png" />
+               </image></ImageView>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fx:id="iconCalc" fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Calc_closed.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fx:id="iconNote" fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Note_closed.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image></ImageView>
+            <ImageView fitHeight="40.0" fitWidth="51.0" onMouseClicked="#switchToSchoolTimetable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Icon_Timetable_open.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="320.0" orientation="VERTICAL" prefHeight="181.0" prefWidth="40.0" style="-fx-background-color: rgb(161,161,161);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="320.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/no_image.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+      <Pane fx:id="contextPane" layoutX="50.0" layoutY="14.0" prefHeight="480.0" prefWidth="743.0" style="-fx-background-color: gainsboro;">
+         <children>
+            <Pane layoutX="46.0" layoutY="72.0" prefHeight="336.0" prefWidth="652.0" style="-fx-background-color: lightgrey; -fx-border-color: grey;">
+               <children>
+                  <CheckBox fx:id="IfArithmetic" layoutX="40.0" layoutY="25.0" mnemonicParsing="false" onAction="#IfArithmeticOn" prefWidth="118.0" text="arithmetic">
+                     <font>
+                        <Font name="Bookman Old Style" size="12.0" />
+                     </font></CheckBox>
+                  <Pane layoutX="29.0" layoutY="78.0" prefHeight="180.0" prefWidth="200.0" style="-fx-border-color: lightslategray; -fx-background-color: gainsboro;">
+                     <children>
+                        <Label layoutX="27.0" layoutY="4.0" prefHeight="20.0" prefWidth="146.0" text="Add another grade:">
+                           <font>
+                              <Font name="Bookman Old Style" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="47.0" prefHeight="17.0" prefWidth="88.0" text="Grade:">
+                           <font>
+                              <Font name="Bookman Old Style" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="82.0" prefHeight="17.0" prefWidth="57.0" text="Weight:">
+                           <font>
+                              <Font name="Bookman Old Style" size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="Add" layoutX="125.0" layoutY="133.0" mnemonicParsing="false" onAction="#onAddClick" text="Add" />
+                        <TextField fx:id="Grade" layoutX="65.0" layoutY="43.0" prefHeight="25.0" prefWidth="48.0" />
+                        <TextField fx:id="Weight" layoutX="65.0" layoutY="78.0" prefHeight="25.0" prefWidth="48.0" />
+                     </children>
+                  </Pane>
+                  <TextArea fx:id="Grades" layoutX="271.0" layoutY="78.0" prefHeight="180.0" prefWidth="48.0" />
+                  <Button fx:id="GetResult" layoutX="534.0" layoutY="281.0" mnemonicParsing="false" onAction="#onResultClick" prefHeight="33.0" prefWidth="68.0" text="Count">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="271.0" layoutY="61.0" prefHeight="17.0" prefWidth="88.0" text="grades:" textAlignment="CENTER">
+                     <font>
+                        <Font name="Bookman Old Style" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="Clear" layoutX="455.0" layoutY="281.0" mnemonicParsing="false" onAction="#onClearClick" prefHeight="33.0" prefWidth="68.0" text="Clear">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Button>
+                  <Label layoutX="328.0" layoutY="61.0" prefHeight="17.0" prefWidth="80.0" text=" weight:">
+                     <font>
+                        <Font name="Bookman Old Style" size="12.0" />
+                     </font></Label>
+                  <TextArea fx:id="Weights" layoutX="331.0" layoutY="78.0" prefHeight="180.0" prefWidth="48.0" />
+                  <Pane layoutX="417.0" layoutY="78.0" prefHeight="127.0" prefWidth="200.0" style="-fx-background-color: gainsboro; -fx-border-color: lightslategray;">
+                     <children>
+                        <Label layoutX="71.0" layoutY="14.0" prefHeight="20.0" prefWidth="80.0" text="Results:">
+                           <font>
+                              <Font name="Bookman Old Style" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Results" layoutX="46.0" layoutY="39.0" prefHeight="33.0" prefWidth="108.0" style="-fx-background-color: lightgrey; -fx-border-color: grey;" underline="true">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children></Pane>
+            <Label layoutX="276.0" layoutY="33.0" prefHeight="17.0" prefWidth="356.0" text="Calculate your grade!">
+               <font>
+                  <Font name="Bookman Old Style" size="18.0" />
+               </font>
+            </Label>
+         </children></Pane>
+   </children>
+</AnchorPane>
