@@ -26,14 +26,6 @@ public class AverageController extends MenuBarController {
     @FXML
     private Label Results;
 
-    @FXML
-    private Button Clear;
-
-    @FXML
-    private Button GetResult;
-
-    @FXML
-    private Button add;
 
     private double sumGrade;
     private double sumWeight;
