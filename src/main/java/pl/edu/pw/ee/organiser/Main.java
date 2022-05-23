@@ -17,7 +17,7 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
             Scene scene = new Scene(root);
-            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("img/program_icon.png")).toString()));
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("img/organiser_img.png")).toString()));
             stage.setTitle("Educational Organiser");
 
             stage.setScene(scene);
