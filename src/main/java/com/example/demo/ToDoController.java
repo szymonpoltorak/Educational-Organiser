@@ -1,18 +1,20 @@
 package com.example.demo;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
+import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class ToDoController extends MenuBarController implements Initializable {
     @FXML
@@ -31,11 +33,24 @@ public class ToDoController extends MenuBarController implements Initializable {
     private Button saveButton;
     @FXML
     private TextField taskName;
+    @FXML
+    private ListView<Rectangle> priorityListView;
     private File tasksFolder;
+    static File priorities = new File("TasksInfo/priorities");
+
+
+    @FXML
+    private ChoiceBox taskPriorityChoiceBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         tasksFolder = new File("Tasks");
+
+        TaskPriority taskPriority = new TaskPriority();
+
+        ObservableList<Integer> priorityList = taskPriorityChoiceBox.getItems();
+        priorityList.addAll(1,2,3);
+
 
         mainLabel.setText("To Do");
         taskList.setOrientation(Orientation.VERTICAL);
@@ -47,6 +62,17 @@ public class ToDoController extends MenuBarController implements Initializable {
 
         ToDoController.showCurrentTasks(taskList, tasksFolder);
 
+        try {
+            taskPriority.colorPriority(priorityListView);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            sortTasks(taskList);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         taskList.setOnMouseClicked(event -> {
             var currentTask = taskList.getSelectionModel().getSelectedItem();
 
@@ -56,6 +82,14 @@ public class ToDoController extends MenuBarController implements Initializable {
                 taskNote.setText(ToDoController.getTaskNote(currentTask, tasksFolder));
             } catch (IOException exception) {
                 ToDoController.ioExceptionError();
+            }
+
+            if(currentTask != null) {
+                try {
+                    taskPriorityChoiceBox.setValue(taskPriority.getTaskPriority(currentTask));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -77,6 +111,13 @@ public class ToDoController extends MenuBarController implements Initializable {
                 } catch (IOException e) {
                     ToDoController.ioExceptionError();
                 }
+
+                try {
+                    taskPriority.handlePriority(taskName.getText(), taskPriorityChoiceBox, null, priorityListView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
             else {
                 var warning = new Alert(Alert.AlertType.WARNING);
@@ -85,6 +126,7 @@ public class ToDoController extends MenuBarController implements Initializable {
                 warning.setContentText("The task with such name already exist!");
                 warning.show();
             }
+
         });
 
         saveButton.setOnMouseClicked(event -> {
@@ -104,7 +146,26 @@ public class ToDoController extends MenuBarController implements Initializable {
                     ToDoController.ioExceptionError();
                 }
             }
+
+            try {
+                taskPriority.handlePriority(taskList.getSelectionModel().getSelectedItem(), taskPriorityChoiceBox, (Integer) taskPriorityChoiceBox.getValue(), priorityListView);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                taskPriority.colorPriority(priorityListView);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                sortTasks(taskList);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+
         });
+
     }
 
     public static void showCurrentTasks(@NotNull ListView<String> taskList, @NotNull File tasksFolder){
@@ -117,6 +178,8 @@ public class ToDoController extends MenuBarController implements Initializable {
             }
         }
     }
+
+
 
     public static String getTaskNote(String currentTask, @NotNull File tasksFolder) throws IOException {
         var note = "";
@@ -144,4 +207,39 @@ public class ToDoController extends MenuBarController implements Initializable {
         return task.substring(task.indexOf("\\") + 1, task.indexOf("."));
     }
 
+    public static void sortTasks(ListView<String> taskList) throws FileNotFoundException {
+
+        Scanner sc = new Scanner(priorities);
+        String currentTask;
+        String taskName;
+        String taskWithoutUnderline;
+        int index = 0;
+
+        taskList.getItems().clear();
+
+        while(sc.hasNext()) {
+
+            currentTask = sc.next();
+
+            if(currentTask.equals("")){
+                break;
+            }
+
+            while (!currentTask.equals("#taskName")){
+
+                if(!sc.hasNext()){
+                    sc.close();
+                    return;
+                }
+                currentTask = sc.next();
+            }
+            taskName = sc.next();
+            taskWithoutUnderline = taskName.replace("_", " ");
+
+            taskList.getItems().add(index, taskWithoutUnderline);
+            index++;
+
+        }
+        sc.close();
+    }
 }

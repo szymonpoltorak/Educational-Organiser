@@ -66,11 +66,12 @@
                 </ImageView>
             </children>
         </FlowPane>
-      <ScrollPane fx:id="taskPane" layoutX="64.0" layoutY="63.0" prefHeight="376.0" prefWidth="336.0">
+      <ScrollPane fx:id="taskPane" hbarPolicy="NEVER" layoutX="64.0" layoutY="63.0" prefHeight="376.0" prefWidth="336.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="334.0">
                <children>
-                  <ListView fx:id="taskList" prefHeight="413.0" prefWidth="336.0" />
+                  <ListView fx:id="taskList" prefHeight="376.0" prefWidth="298.0" />
+                  <ListView fx:id="priorityListView" layoutX="298.0" prefHeight="376.0" prefWidth="22.0" />
                </children></AnchorPane>
         </content>
       </ScrollPane>
@@ -78,7 +79,9 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="380.0">
                <children>
-                  <TextArea fx:id="taskNote" layoutX="3.0" layoutY="182.0" prefHeight="190.0" prefWidth="373.0" />
+                  <TextArea fx:id="taskNote" layoutX="6.0" layoutY="7.0" prefHeight="334.0" prefWidth="367.0" />
+                  <Label layoutX="14.0" layoutY="348.0" text="Priority:" />
+                  <ChoiceBox fx:id="taskPriorityChoiceBox" layoutX="64.0" layoutY="344.0" prefHeight="25.0" prefWidth="52.0" />
                </children></AnchorPane>
         </content>
       </TitledPane>
