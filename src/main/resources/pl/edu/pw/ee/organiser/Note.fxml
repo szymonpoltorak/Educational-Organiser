@@ -84,7 +84,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
+            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: E5E5E5;">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -93,7 +93,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: E5E5E5;">
+            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToAverage" pickOnBounds="true" preserveRatio="true">
                      <image>
