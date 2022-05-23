@@ -36,6 +36,8 @@ public class ToDoController extends MenuBarController implements Initializable {
     private TextField taskName;
     @FXML
     private ListView<Rectangle> priorityListView;
+    @FXML
+    private DatePicker deadlineDatePicker;
     private File tasksFolder;
     static File priorities = new File("TasksInfo/priorities");
 
