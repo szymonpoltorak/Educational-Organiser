@@ -29,7 +29,6 @@ class ToDoTaskPriorityTest {
         while (wholeFile.hasNextLine()) {
             current = wholeFile.nextLine();
             if(!current.trim().isEmpty()) {
-                System.out.println(" current - " + current);
                 buffer.append(current).append(System.lineSeparator());
             }
         }
