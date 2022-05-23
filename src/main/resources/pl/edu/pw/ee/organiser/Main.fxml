@@ -10,28 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.ee.organiser.MenuBarController">
    <children>
-      <FlowPane alignment="BOTTOM_LEFT" layoutY="395.0" orientation="VERTICAL" prefHeight="105.0" prefWidth="48.0" style="-fx-background-color: C4C4C4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="395.0">
-         <children>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/ic_round-account-circle.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/settings_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </FlowPane>
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="395.0" orientation="VERTICAL" prefHeight="105.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="395.0" />
       <ImageView fx:id="mainImage" fitHeight="402.0" fitWidth="679.0" layoutX="126.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/main_page.jpg" />
@@ -57,15 +36,6 @@
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@menu_img/to_do.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/calendar_icon.png" />
                      </image>
                   </ImageView>
                </children>

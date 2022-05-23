@@ -190,7 +190,7 @@
                </children></Pane>
          </children>
       </AnchorPane>
-      <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#switchToSceneCalcScene" prefHeight="45.0" prefWidth="70.0" text="Standard" />
+      <Button layoutX="52.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#switchToSceneCalcScene" prefHeight="45.0" prefWidth="70.0" text="Standard" />
       <Button layoutX="61.0" layoutY="182.0" mnemonicParsing="false" onAction="#storageInMemoryM" prefHeight="55.0" prefWidth="93.0" style="-fx-background-color: #343434#343434 #343434#343434; -fx-background-radius: 15 15;" text="MRC" textFill="WHITE">
          <font>
             <Font size="25.0" />
@@ -206,28 +206,7 @@
             <Font size="25.0" />
          </font>
       </Button>
-      <FlowPane alignment="BOTTOM_LEFT" layoutY="400.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
-         <children>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/ic_round-account-circle.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/settings_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </FlowPane>
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="400.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;" />
       <TextArea fx:id="history" layoutX="798.0" layoutY="49.0" prefHeight="406.0" prefWidth="237.0" />
       <Label layoutX="798.0" layoutY="28.0" prefHeight="17.0" prefWidth="237.0" text="Historia wykonywanych obliczeń">
          <font>
@@ -250,15 +229,6 @@
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@menu_img/to_do.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/calendar_icon.png" />
                      </image>
                   </ImageView>
                </children>

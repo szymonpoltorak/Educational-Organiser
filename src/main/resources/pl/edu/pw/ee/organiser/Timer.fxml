@@ -139,15 +139,6 @@
             </Pane>
             <Pane prefHeight="50.0" prefWidth="50.0">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/calendar_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@menu_img/calculator_icon.png" />
@@ -193,27 +184,6 @@
             </Pane>
          </children>
       </FlowPane>
-      <FlowPane alignment="BOTTOM_LEFT" layoutY="400.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
-         <children>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/ic_round-account-circle.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menu_img/settings_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </FlowPane>
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="400.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;" />
    </children>
 </AnchorPane>
