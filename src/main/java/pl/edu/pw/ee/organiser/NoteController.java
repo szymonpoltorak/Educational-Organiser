@@ -1,5 +1,6 @@
 package pl.edu.pw.ee.organiser;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -39,6 +40,8 @@ public class NoteController extends MenuBarController implements Initializable{
     private TextField addFileName;
     @FXML
     public AnchorPane addNotePane;
+    @FXML
+    private ChoiceBox<Integer> fontSizeChoiceBox;
 
     public void save(){
         if (currentNote == null){
@@ -216,12 +219,34 @@ public class NoteController extends MenuBarController implements Initializable{
         }
     }
 
+    public void changeFontSize(int fontSize, TextArea notesArea){
+        notesArea.setStyle("-fx-font-size: " + fontSize);
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
         TreeItem<String> treeRoot = new TreeItem<>("Notes", new ImageView(dirIcon));
 
+        ObservableList<Integer> fontSizeList = fontSizeChoiceBox.getItems();
+
+        for(int fontSize = 10; fontSize <= 50; fontSize += 2){
+            fontSizeList.add(fontSize);
+        }
+
+        fontSizeChoiceBox.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource(
+                        "css/FontSize.css"
+                )).toExternalForm()
+        );
+
+        fontSizeChoiceBox.setOnAction(actionEvent -> changeFontSize(fontSizeChoiceBox.getValue(), notesArea));
+
+
         notesList.setRoot(treeRoot);
         updateNotesList();
+
     }
 }
