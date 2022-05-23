@@ -45,7 +45,7 @@ public class TaskPriority {
 
         if(taskPriorityChoiceBox.getValue() == null){
             try {
-                fileWriter.write(taskNameWithoutSpaces + "#priority 1\n");
+                fileWriter.write("#taskName " + taskNameWithoutSpaces + " #priority 1\n");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
