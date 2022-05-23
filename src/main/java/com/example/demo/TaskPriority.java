@@ -79,6 +79,7 @@ public class TaskPriority {
             while (!current.equals("#taskName")){
 
                 if(!findTask.hasNext()){
+                    findTask.close();
                     return false;
                 }
 
@@ -121,7 +122,6 @@ public class TaskPriority {
             while (!current.equals("#taskName")){
 
                 if(!findTask.hasNext()){
-                    wholeFile.close();
                     findTask.close();
                     return;
                 }
@@ -134,7 +134,6 @@ public class TaskPriority {
             while (!current.equals("#priority")){
 
                 if(!findTask.hasNext()){
-                    wholeFile.close();
                     findTask.close();
                     return;
                 }
@@ -154,7 +153,6 @@ public class TaskPriority {
         fileContents = fileContents.replace(lineToChange, newLine);
 
         findTask.close();
-        wholeFile.close();
 
         fileWriter = new FileWriter(priorities);
         fileWriter.write(fileContents);
