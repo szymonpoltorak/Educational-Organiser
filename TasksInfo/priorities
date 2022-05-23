@@ -1,5 +1,6 @@
-#taskName Task5 #priority 3
-#taskName Task3 #priority 2
-#taskName Task4 #priority 2
-#taskName Task2 #priority 1
-#taskName Task1 #priority 1
+#taskName Task2 #priority 3 #deadline 2010-10-10
+#taskName new #priority 3 #deadline null
+#taskName Task3 #priority 2 #deadline null
+#taskName Task4 #priority 2 #deadline 2022-04-28
+#taskName Task1 #priority 1 #deadline null
+#taskName Task5 #priority 1 #deadline 2022-04-25
