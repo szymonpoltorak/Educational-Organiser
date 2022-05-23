@@ -59,7 +59,6 @@ public class TaskPriority {
         }
         try {
             fileWriter.close();
-            System.out.println("closed");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
