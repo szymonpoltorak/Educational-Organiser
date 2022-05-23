@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -88,5 +87,7 @@
             <Button fx:id="cancelAddNoteButton" layoutX="80.0" layoutY="25.0" mnemonicParsing="false" onAction="#cancelAddNewNoteButton" prefHeight="25.0" prefWidth="80.0" text="Cancel" />
          </children>
       </AnchorPane>
+      <Label layoutX="659.0" layoutY="38.0" text="Font size:" />
+      <ChoiceBox fx:id="fontSizeChoiceBox" layoutX="716.0" layoutY="34.0" prefHeight="25.0" prefWidth="50.0" />
    </children>
 </AnchorPane>
