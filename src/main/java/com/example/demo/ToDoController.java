@@ -36,8 +36,6 @@ public class ToDoController extends MenuBarController implements Initializable {
     private TextField taskName;
     @FXML
     private ListView<Rectangle> priorityListView;
-    @FXML
-    private DatePicker deadlineDatePicker;
     private File tasksFolder;
     static File priorities = new File("TasksInfo/priorities");
 
@@ -233,9 +231,9 @@ public class ToDoController extends MenuBarController implements Initializable {
     public static void sortTasks(ListView<String> taskList) throws FileNotFoundException {
 
         Scanner sc = new Scanner(priorities);
-        String currentTask = "";
+        String currentTask;
         String taskName;
-        String taskWithoutUnderline = "";
+        String taskWithoutUnderline;
         int index = 0;
 
         taskList.getItems().clear();
@@ -251,15 +249,18 @@ public class ToDoController extends MenuBarController implements Initializable {
             while (!currentTask.equals("#taskName")){
 
                 if(!sc.hasNext()){
+                    sc.close();
                     return;
                 }
                 currentTask = sc.next();
             }
             taskName = sc.next();
-            taskWithoutUnderline = taskName.replaceAll("_", " ");
+            taskWithoutUnderline = taskName.replace("_", " ");
 
             taskList.getItems().add(index, taskWithoutUnderline);
             index++;
+
         }
+        sc.close();
     }
 }

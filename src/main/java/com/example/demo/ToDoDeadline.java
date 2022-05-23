@@ -14,13 +14,13 @@ public class ToDoDeadline {
 
     static File priorities = new File("TasksInfo/priorities");
     private static FileWriter fileWriter;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public LocalDate getTaskDeadline(String taskName) throws FileNotFoundException {
 
         Scanner findDeadline = new Scanner(priorities);
         String taskNameWithoutSpaces;
-        LocalDate deadline = null;
+        LocalDate deadline;
         String taskNameFromFile;
         String current;
 
@@ -32,6 +32,7 @@ public class ToDoDeadline {
             while (!current.equals("#taskName")){
 
                 if(!findDeadline.hasNext()){
+                    findDeadline.close();
                     return null;
                 }
                 current = findDeadline.next();
@@ -45,12 +46,14 @@ public class ToDoDeadline {
                 while (!current.equals("#deadline")){
 
                     if(!findDeadline.hasNext()){
+                        findDeadline.close();
                         return null;
                     }
                     current = findDeadline.next();
                 }
                 current = findDeadline.next();
                 if (current.equals("null")){
+                    findDeadline.close();
                     return null;
                 }
 
@@ -59,10 +62,14 @@ public class ToDoDeadline {
             }
         }
         findDeadline.close();
-        return deadline;
+        return null;
 
     }
     public void changeDeadline(String taskName, DatePicker deadlineDatePicker) throws IOException {
+
+        if(taskName == null){
+            return;
+        }
 
         String taskNameWithoutSpaces;
         String wholeLine = null;
@@ -78,10 +85,6 @@ public class ToDoDeadline {
         Scanner findTask = new Scanner(priorities);
         Scanner getWholeLine = new Scanner(priorities);
 
-        if(taskName == null){
-            return;
-        }
-
         taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
 
         while(findTask.hasNext() && getWholeLine.hasNextLine()) {
@@ -92,6 +95,8 @@ public class ToDoDeadline {
             while (!current.equals("#taskName")) {
 
                 if (!findTask.hasNext()) {
+                    findTask.close();
+                    getWholeLine.close();
                     return;
                 }
                 current = findTask.next();
@@ -103,6 +108,8 @@ public class ToDoDeadline {
                 while (!current.equals("#deadline")) {
 
                     if (!findTask.hasNext()) {
+                        findTask.close();
+                        getWholeLine.close();
                         return;
                     }
                     current = findTask.next();
@@ -120,6 +127,8 @@ public class ToDoDeadline {
 
         deadline = String.valueOf(deadlineDatePicker.getValue());
 
+        assert wholeLine != null;
+        assert deadlineFromFile != null;
         changedLine = wholeLine.replaceAll(deadlineFromFile, deadline);
         changedFile = wholeFile.replaceAll(wholeLine, changedLine);
 
@@ -152,6 +161,10 @@ public class ToDoDeadline {
 
     public void setDeadlineNull(String taskName) throws IOException {
 
+        if(taskName == null){
+            return;
+        }
+
         String taskNameWithoutSpaces;
         String wholeLine = null;
         String current;
@@ -161,10 +174,6 @@ public class ToDoDeadline {
 
         Scanner findTask = new Scanner(priorities);
         Scanner getWholeLine = new Scanner(priorities);
-
-        if(taskName == null){
-            return;
-        }
 
         taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
 
@@ -176,6 +185,8 @@ public class ToDoDeadline {
             while (!current.equals("#taskName")) {
 
                 if (!findTask.hasNext()) {
+                    findTask.close();
+                    getWholeLine.close();
                     return;
                 }
                 current = findTask.next();
@@ -194,8 +205,11 @@ public class ToDoDeadline {
         }
 
 
-
+        assert wholeLine != null;
         changedFile = wholeFile.replaceAll(wholeLine, wholeLine + " #deadline null");
+
+        findTask.close();
+        getWholeLine.close();
 
         fileWriter = new FileWriter(priorities);
         fileWriter.write(changedFile);
