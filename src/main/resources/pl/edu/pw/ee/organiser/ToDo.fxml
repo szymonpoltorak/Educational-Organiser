@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.ee.organiser.ToDoController">
+    <children>
+        <Label fx:id="mainLabel" layoutX="64.0" layoutY="14.0" prefHeight="51.0" prefWidth="270.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+      <ScrollPane fx:id="taskPane" layoutX="64.0" layoutY="63.0" prefHeight="376.0" prefWidth="336.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="334.0">
+               <children>
+                  <ListView fx:id="taskList" prefHeight="413.0" prefWidth="336.0" />
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+      <TitledPane fx:id="titlePane" animated="false" layoutX="400.0" layoutY="40.0" prefHeight="398.0" prefWidth="382.0" text="untitled">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="380.0">
+               <children>
+                  <TextArea fx:id="taskNote" layoutX="3.0" layoutY="182.0" prefHeight="190.0" prefWidth="373.0" />
+               </children></AnchorPane>
+        </content>
+      </TitledPane>
+      <ButtonBar layoutX="64.0" layoutY="439.0" prefHeight="40.0" prefWidth="336.0">
+        <buttons>
+            <TextField fx:id="taskName" />
+            <Button fx:id="completeButton" mnemonicParsing="false" text="Button" />
+          <Button fx:id="addButton" mnemonicParsing="false" text="Button" />
+        </buttons>
+      </ButtonBar>
+      <Button fx:id="saveButton" layoutX="707.0" layoutY="450.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Button" />
+      <FlowPane alignment="BOTTOM_LEFT" layoutY="400.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/ic_round-account-circle.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/settings_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+      <FlowPane orientation="VERTICAL" prefHeight="402.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/menu_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: E5E5E5;">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/to_do.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/calendar_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/calculator_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToTimerScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/timer_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/notes_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: C4C4C4;">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToAverage" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/icon-park_average.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSchoolTimetable" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@menu_img/uil_schedule.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+    </children>
+</AnchorPane>
