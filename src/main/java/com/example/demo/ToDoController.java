@@ -12,6 +12,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -35,6 +36,8 @@ public class ToDoController extends MenuBarController implements Initializable {
     private TextField taskName;
     @FXML
     private ListView<Rectangle> priorityListView;
+    @FXML
+    private DatePicker deadlineDatePicker;
     private File tasksFolder;
     static File priorities = new File("TasksInfo/priorities");
 
@@ -47,6 +50,7 @@ public class ToDoController extends MenuBarController implements Initializable {
         tasksFolder = new File("Tasks");
 
         TaskPriority taskPriority = new TaskPriority();
+        ToDoDeadline toDoDeadline = new ToDoDeadline();
 
         ObservableList<Integer> priorityList = taskPriorityChoiceBox.getItems();
         priorityList.addAll(1,2,3);
@@ -90,6 +94,15 @@ public class ToDoController extends MenuBarController implements Initializable {
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
+
+                try {
+                    if(toDoDeadline.getTaskDeadline(currentTask) == null){
+                        deadlineDatePicker.setValue(null);
+                    }
+                    deadlineDatePicker.setValue(toDoDeadline.getTaskDeadline(currentTask));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -114,6 +127,12 @@ public class ToDoController extends MenuBarController implements Initializable {
 
                 try {
                     taskPriority.handlePriority(taskName.getText(), taskPriorityChoiceBox, null, priorityListView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    toDoDeadline.setDeadlineNull(taskName.getText());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -158,11 +177,15 @@ public class ToDoController extends MenuBarController implements Initializable {
                 throw new RuntimeException(e);
             }
             try {
+                toDoDeadline.changeDeadline(taskList.getSelectionModel().getSelectedItem(), deadlineDatePicker);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
                 sortTasks(taskList);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
-
 
         });
 
