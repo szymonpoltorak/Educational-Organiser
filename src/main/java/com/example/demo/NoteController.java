@@ -1,9 +1,6 @@
 package com.example.demo;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -240,17 +237,12 @@ public class NoteController extends MenuBarController implements Initializable{
         }
 
         fontSizeChoiceBox.getStylesheets().add(
-                getClass().getResource(
-                        "FontSize.css"
-                ).toExternalForm()
+                Objects.requireNonNull(getClass().getResource(
+                        "css/FontSize.css"
+                )).toExternalForm()
         );
 
-        fontSizeChoiceBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                changeFontSize(fontSizeChoiceBox.getValue(), notesArea);
-            }
-        });
+        fontSizeChoiceBox.setOnAction(actionEvent -> changeFontSize(fontSizeChoiceBox.getValue(), notesArea));
 
 
         notesList.setRoot(treeRoot);
