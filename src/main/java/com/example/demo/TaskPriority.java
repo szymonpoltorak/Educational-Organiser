@@ -35,7 +35,9 @@ public class TaskPriority {
 
         String taskNameWithoutSpaces;
 
-        taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
+        taskNameWithoutSpaces = taskName.replace(" ", "_");
+
+        System.out.println(taskNameWithoutSpaces);
 
         try {
             fileWriter = new FileWriter(priorities, true);
@@ -45,7 +47,8 @@ public class TaskPriority {
 
         if(taskPriorityChoiceBox.getValue() == null){
             try {
-                fileWriter.write(taskNameWithoutSpaces + "#priority 1\n");
+                fileWriter.write("#taskName " + taskNameWithoutSpaces + " #priority 1\n");
+                System.out.println("#taskName " + taskNameWithoutSpaces + " #priority 1\n");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -59,6 +62,7 @@ public class TaskPriority {
         }
         try {
             fileWriter.close();
+            System.out.println("closed");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -213,7 +217,13 @@ public class TaskPriority {
         while(getPriority.hasNext() && getWholeLine.hasNextLine()){
 
             wholeLine = getWholeLine.nextLine();
+            while (wholeLine.equals("")){
+                wholeLine = getWholeLine.nextLine();
+            }
+
+            System.out.println("line - " + wholeLine);
             current = getPriority.next();
+            System.out.println("current - " + current);
 
             while (!current.equals("#priority")){
 
@@ -221,6 +231,7 @@ public class TaskPriority {
                     return;
                 }
                 current = getPriority.next();
+                System.out.println("current - " + current);
             }
             priority = getPriority.next();
 
@@ -258,6 +269,9 @@ public class TaskPriority {
             current = findTask.next();
 
             while (!current.equals("#taskName")){
+                if(!findTask.hasNext()){
+                    return null;
+                }
                 current = findTask.next();
             }
             taskNameFromFile = findTask.next();
@@ -267,6 +281,9 @@ public class TaskPriority {
                 current = findTask.next();
 
                 while (!current.equals("#priority")){
+                    if(!findTask.hasNext()){
+                        return null;
+                    }
                     current = findTask.next();
                 }
                 priority = Integer.valueOf(findTask.next());
