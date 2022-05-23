@@ -213,19 +213,32 @@ public class ToDoController extends MenuBarController implements Initializable {
 
         Scanner sc = new Scanner(priorities);
         String currentTask = "";
+        String taskName;
         String taskWithoutUnderline = "";
         int index = 0;
 
         taskList.getItems().clear();
 
-        while(sc.hasNextLine() && sc.hasNext()) {
+        while(sc.hasNext()) {
+
             currentTask = sc.next();
-            taskWithoutUnderline = currentTask.replaceAll("_", " ");
+
+            if(currentTask.equals("")){
+                break;
+            }
+
+            while (!currentTask.equals("#taskName")){
+
+                if(!sc.hasNext()){
+                    return;
+                }
+                currentTask = sc.next();
+            }
+            taskName = sc.next();
+            taskWithoutUnderline = taskName.replaceAll("_", " ");
 
             taskList.getItems().add(index, taskWithoutUnderline);
             index++;
-
-            sc.next();
         }
     }
 }

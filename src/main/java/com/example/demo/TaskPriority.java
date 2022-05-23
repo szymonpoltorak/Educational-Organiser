@@ -45,14 +45,14 @@ public class TaskPriority {
 
         if(taskPriorityChoiceBox.getValue() == null){
             try {
-                fileWriter.write(taskNameWithoutSpaces + " 1\n");
+                fileWriter.write(taskNameWithoutSpaces + "#priority 1\n");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         else{
             try {
-                fileWriter.write(taskNameWithoutSpaces + " " + taskPriorityChoiceBox.getValue() + "\n");
+                fileWriter.write( "#taskName "+ taskNameWithoutSpaces + " #priority " + taskPriorityChoiceBox.getValue() + "\n");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -68,12 +68,25 @@ public class TaskPriority {
     public static boolean isAlreadyInPriorities(String taskName) throws FileNotFoundException {
 
         Scanner findTask = new Scanner(priorities);
+        String current;
         String taskNameWithoutSpaces;
         taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
 
         while (findTask.hasNext()){
+
+            current = findTask.next();
+
+            while (!current.equals("#taskName")){
+
+                if(!findTask.hasNext()){
+                    return false;
+                }
+
+                current = findTask.next();
+            }
+
             final String taskNameFromFile = findTask.next();
-            findTask.next();
+
             if(taskNameFromFile.equals(taskNameWithoutSpaces)){
                 findTask.close();
                 return true;
@@ -93,6 +106,7 @@ public class TaskPriority {
         String taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
         String taskNameFromFile;
         String priorityFromFile;
+        String current;
 
         while (wholeFile.hasNextLine()) {
             buffer.append(wholeFile.nextLine()).append(System.lineSeparator());
@@ -101,13 +115,36 @@ public class TaskPriority {
         wholeFile.close();
 
         while (findTask.hasNext()){
+
+            current = findTask.next();
+
+            while (!current.equals("#taskName")){
+
+                if(!findTask.hasNext()){
+                    return;
+                }
+                current = findTask.next();
+            }
             taskNameFromFile = findTask.next();
+
+            current = findTask.next();
+
+            while (!current.equals("#priority")){
+
+                if(!findTask.hasNext()){
+                    return;
+                }
+
+                current = findTask.next();
+            }
             priorityFromFile = findTask.next();
+
             if(taskNameFromFile.equals(taskNameWithoutSpaces)){
-                lineToChange = taskNameFromFile + " " + priorityFromFile;
+                lineToChange = "#taskName " + taskNameFromFile + " #priority " + priorityFromFile;
+                break;
             }
         }
-        String newLine = taskName.replaceAll(" ", "_") + " " + priority;
+        String newLine = "#taskName " + taskName.replaceAll(" ", "_") + " #priority " + priority;
 
         assert lineToChange != null;
         fileContents = fileContents.replaceAll(lineToChange, newLine);
@@ -128,9 +165,18 @@ public class TaskPriority {
         Scanner getPriority = new Scanner(priorities);
 
         while(getPriority.hasNext()) {
-            getPriority.next();
+
             current = getPriority.next();
-            priority = current;
+
+            while(!current.equals("#priority")){
+
+                if(!getPriority.hasNext()){
+                    return;
+                }
+
+                current = getPriority.next();
+            }
+            priority = getPriority.next();
 
             Rectangle priorityColor = new Rectangle();
             priorityColor.setWidth(5);
@@ -157,26 +203,35 @@ public class TaskPriority {
         StringBuilder priorityEquals2 = new StringBuilder();
         StringBuilder priorityEquals1 = new StringBuilder();
         String current;
-        String fileName;
         String priority;
         String newFileText;
+        String wholeLine;
 
         Scanner getPriority = new Scanner(priorities);
+        Scanner getWholeLine = new Scanner(priorities);
 
-        while(getPriority.hasNext()){
+        while(getPriority.hasNext() && getWholeLine.hasNextLine()){
+
+            wholeLine = getWholeLine.nextLine();
             current = getPriority.next();
-            fileName = current;
-            current = getPriority.next();
-            priority = current;
+
+            while (!current.equals("#priority")){
+
+                if(!getPriority.hasNext()){
+                    return;
+                }
+                current = getPriority.next();
+            }
+            priority = getPriority.next();
 
             if(priority.equals("1")){
-                priorityEquals1.append(fileName).append(" ").append(priority).append("\n");
+                priorityEquals1.append(wholeLine).append("\n");
             }
             if(priority.equals("2")){
-                priorityEquals2.append(fileName).append(" ").append(priority).append("\n");
+                priorityEquals2.append(wholeLine).append("\n");
             }
             if(priority.equals("3")){
-                priorityEquals3.append(fileName).append(" ").append(priority).append("\n");
+                priorityEquals3.append(wholeLine).append("\n");
             }
         }
 
@@ -194,12 +249,28 @@ public class TaskPriority {
         Scanner findTask = new Scanner(priorities);
         String taskNameWithoutSpaces;
         Integer priority = null;
+        String taskNameFromFile;
+        String current;
 
         taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
         while (findTask.hasNext()) {
-            final String lineFromFile = findTask.next();
-            if (lineFromFile.contains(taskNameWithoutSpaces)) {
+
+            current = findTask.next();
+
+            while (!current.equals("#taskName")){
+                current = findTask.next();
+            }
+            taskNameFromFile = findTask.next();
+
+            if (taskNameFromFile.equals(taskNameWithoutSpaces)) {
+
+                current = findTask.next();
+
+                while (!current.equals("#priority")){
+                    current = findTask.next();
+                }
                 priority = Integer.valueOf(findTask.next());
+                return priority;
             }
         }
         findTask.close();
