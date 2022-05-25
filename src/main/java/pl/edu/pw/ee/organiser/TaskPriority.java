@@ -347,7 +347,9 @@ public class TaskPriority {
                 System.out.println("it conteains");
                 return currentLine;
             }
-            currentLine++;
+            if(!taskLine.equals("")) {
+                currentLine++;
+            }
         }
         return currentLine;
     }
