@@ -7,7 +7,6 @@ public class AverageController extends MenuBarController {
 
     @FXML
     private CheckBox IfArithmetic;
-    private boolean ifArithmetic;
 
     @FXML
     private TextField Grade;
@@ -48,19 +47,17 @@ public class AverageController extends MenuBarController {
     public void onAddClick(){
         if(Grade.getLength() >0 && Weight.getLength() >0)
             if(Grade.getText().matches("[0-9]+") && Weight.getText().matches("[0-9]+"))
-                if(Double.parseDouble(Grade.getText() ) > 0 && Double.parseDouble(Weight.getText()) >0 ){
-            grade = Double.parseDouble(Grade.getText());
-            weight = Double.parseDouble(Weight.getText());
-                Grades.appendText(Grade.getText()+"\n");
-                Weights.appendText(Weight.getText()+"\n");
-                sumGrade += grade * weight;
-                sumWeight += weight;
-
-
-            Grade.setText("");
-            if(!IfArithmetic.isSelected())
-            Weight.setText("");
-        }
+                if(Double.parseDouble(Grade.getText() ) > 0 && Double.parseDouble(Weight.getText()) >0 ) {
+                    grade = Double.parseDouble(Grade.getText());
+                    weight = Double.parseDouble(Weight.getText());
+                    Grades.appendText(Grade.getText() + "\n");
+                    Weights.appendText(Weight.getText() + "\n");
+                    sumGrade += grade * weight;
+                    sumWeight += weight;
+                    Grade.setText("");
+                    if (!IfArithmetic.isSelected())
+                    Weight.setText("");
+                }
     }
 
     public void onClearClick(){
