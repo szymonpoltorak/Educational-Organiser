@@ -8,18 +8,22 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+
 public class ToDoController extends MenuBarController implements Initializable {
     @FXML
     private Label mainLabel;
+    @FXML
+    private ListView<String> doneList;
     @FXML
     private TitledPane titlePane;
     @FXML
@@ -40,6 +44,7 @@ public class ToDoController extends MenuBarController implements Initializable {
     private DatePicker deadlineDatePicker;
     private File tasksFolder;
     static File priorities = new File("TasksInfo/priorities");
+    private TaskPriority taskPriority = new TaskPriority();
 
 
     @FXML
@@ -58,6 +63,9 @@ public class ToDoController extends MenuBarController implements Initializable {
 
         mainLabel.setText("To Do");
         taskList.setOrientation(Orientation.VERTICAL);
+        doneList.setOrientation(Orientation.VERTICAL);
+        mainLabel.setStyle("text-decoration: line-through;");
+        doneList.getItems().add("doneTask");
         addButton.setText("Add Task");
         completeButton.setText("Complete Task");
         saveButton.setText("Save");
@@ -189,6 +197,17 @@ public class ToDoController extends MenuBarController implements Initializable {
 
         });
 
+    }
+
+
+
+    public void switchToDone() throws IOException {
+        if(taskList.getSelectionModel().getSelectedItem() != null) {
+            doneList.getItems().add(String.valueOf(taskList.getSelectionModel().getSelectedItem()));
+            priorityListView.getItems().remove(taskPriority.getPriorityIndex(taskList.getSelectionModel().getSelectedItem()));
+            taskPriority.removeFromListAndDeleteFile(taskList.getSelectionModel().getSelectedItem());
+            taskList.getItems().remove(String.valueOf(taskList.getSelectionModel().getSelectedItem()));
+        }
     }
 
     public static void showCurrentTasks(@NotNull ListView<String> taskList, @NotNull File tasksFolder){

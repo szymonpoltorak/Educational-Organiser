@@ -219,6 +219,10 @@ public class TaskPriority {
         while(getPriority.hasNext() && getWholeLine.hasNextLine()){
 
             wholeLine = getWholeLine.nextLine();
+            while (wholeLine.equals("")){
+                wholeLine = getWholeLine.nextLine();
+            }
+
             current = getPriority.next();
 
             while (!current.equals("#priority")){
@@ -268,6 +272,9 @@ public class TaskPriority {
             current = findTask.next();
 
             while (!current.equals("#taskName")){
+                if(!findTask.hasNext()){
+                    return null;
+                }
                 current = findTask.next();
             }
             taskNameFromFile = findTask.next();
@@ -277,6 +284,9 @@ public class TaskPriority {
                 current = findTask.next();
 
                 while (!current.equals("#priority")){
+                    if(!findTask.hasNext()){
+                        return null;
+                    }
                     current = findTask.next();
                 }
                 priority = Integer.valueOf(findTask.next());
@@ -290,4 +300,55 @@ public class TaskPriority {
 
     }
 
+    public void removeFromListAndDeleteFile (String taskName) throws IOException {
+
+        StringBuilder buffer = new StringBuilder();
+        Scanner wholeFile = new Scanner(priorities);
+        String current;
+        File fileToDelete = new File("Tasks/" + taskName + ".txt");
+        Scanner findTaskLine = new Scanner(priorities);
+        String taskLine = null;
+        String taskNameWithoutSpaces = taskName.replace(" ", "_");
+
+        while (wholeFile.hasNextLine()) {
+            current = wholeFile.nextLine();
+            if(!current.trim().isEmpty()) {
+                buffer.append(current).append(System.lineSeparator());
+            }
+        }
+        String fileContents = buffer.toString();
+        wholeFile.close();
+
+
+        while (findTaskLine.hasNextLine()){
+            taskLine = findTaskLine.nextLine();
+            if(taskLine.contains(taskNameWithoutSpaces)){
+                fileContents = fileContents.replaceAll(taskLine, "");
+                break;
+            }
+        }
+
+        fileWriter = new FileWriter(priorities);
+        fileWriter.write(fileContents);
+        fileWriter.close();
+        fileToDelete.delete();
+    }
+
+    public int getPriorityIndex (String taskName) throws FileNotFoundException {
+
+        Scanner findTaskLine = new Scanner(priorities);
+        String taskLine = null;
+        int currentLine = 0;
+        String taskNameWithoutSpaces = taskName.replace(" ", "_");
+
+        while (findTaskLine.hasNextLine()){
+            taskLine = findTaskLine.nextLine();
+            if(taskLine.contains(taskNameWithoutSpaces)){
+                System.out.println("it conteains");
+                return currentLine;
+            }
+            currentLine++;
+        }
+        return currentLine;
+    }
 }
