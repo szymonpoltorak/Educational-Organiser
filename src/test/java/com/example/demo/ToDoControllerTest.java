@@ -9,7 +9,7 @@ class ToDoControllerTest {
     @Test
     void getTaskNote_test_pass(){
         //given
-        var expected = "src/test/resources/testdata/test";
+        var expected = "test\\resources\\testdata\\test";
         var file = new File("src/test/resources/testdata/test.txt");
 
         //when
