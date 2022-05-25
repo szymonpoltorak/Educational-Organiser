@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,9 +18,12 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+
 public class ToDoController extends MenuBarController implements Initializable {
     @FXML
     private Label mainLabel;
+    @FXML
+    private ListView<String> doneList;
     @FXML
     private TitledPane titlePane;
     @FXML
@@ -35,6 +40,8 @@ public class ToDoController extends MenuBarController implements Initializable {
     private TextField taskName;
     @FXML
     private ListView<Rectangle> priorityListView;
+    @FXML
+    private DatePicker deadlineDatePicker;
     private File tasksFolder;
     static File priorities = new File("TasksInfo/priorities");
 
@@ -47,6 +54,7 @@ public class ToDoController extends MenuBarController implements Initializable {
         tasksFolder = new File("Tasks");
 
         TaskPriority taskPriority = new TaskPriority();
+        ToDoDeadline toDoDeadline = new ToDoDeadline();
 
         ObservableList<Integer> priorityList = taskPriorityChoiceBox.getItems();
         priorityList.addAll(1,2,3);
@@ -54,6 +62,9 @@ public class ToDoController extends MenuBarController implements Initializable {
 
         mainLabel.setText("To Do");
         taskList.setOrientation(Orientation.VERTICAL);
+        doneList.setOrientation(Orientation.VERTICAL);
+        mainLabel.setStyle("text-decoration: line-through;");
+        doneList.getItems().add("doneTask");
         addButton.setText("Add Task");
         completeButton.setText("Complete Task");
         saveButton.setText("Save");
@@ -90,6 +101,15 @@ public class ToDoController extends MenuBarController implements Initializable {
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
+
+                try {
+                    if(toDoDeadline.getTaskDeadline(currentTask) == null){
+                        deadlineDatePicker.setValue(null);
+                    }
+                    deadlineDatePicker.setValue(toDoDeadline.getTaskDeadline(currentTask));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -114,6 +134,12 @@ public class ToDoController extends MenuBarController implements Initializable {
 
                 try {
                     taskPriority.handlePriority(taskName.getText(), taskPriorityChoiceBox, null, priorityListView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                try {
+                    toDoDeadline.setDeadlineNull(taskName.getText());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -158,14 +184,27 @@ public class ToDoController extends MenuBarController implements Initializable {
                 throw new RuntimeException(e);
             }
             try {
+                toDoDeadline.changeDeadline(taskList.getSelectionModel().getSelectedItem(), deadlineDatePicker);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
                 sortTasks(taskList);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
-
         });
 
+    }
+
+
+
+    public void switchToDone(){
+        if(taskList.getSelectionModel().getSelectedItem() != null) {
+            doneList.getItems().add(String.valueOf(taskList.getSelectionModel().getSelectedItem()));
+            taskList.getItems().remove(String.valueOf(taskList.getSelectionModel().getSelectedItem()));
+        }
     }
 
     public static void showCurrentTasks(@NotNull ListView<String> taskList, @NotNull File tasksFolder){
