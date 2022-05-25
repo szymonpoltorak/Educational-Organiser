@@ -44,6 +44,7 @@ public class ToDoController extends MenuBarController implements Initializable {
     private DatePicker deadlineDatePicker;
     private File tasksFolder;
     static File priorities = new File("TasksInfo/priorities");
+    private TaskPriority taskPriority = new TaskPriority();
 
 
     @FXML
@@ -200,9 +201,11 @@ public class ToDoController extends MenuBarController implements Initializable {
 
 
 
-    public void switchToDone(){
+    public void switchToDone() throws IOException {
         if(taskList.getSelectionModel().getSelectedItem() != null) {
             doneList.getItems().add(String.valueOf(taskList.getSelectionModel().getSelectedItem()));
+            priorityListView.getItems().remove(taskPriority.getPriorityIndex(taskList.getSelectionModel().getSelectedItem()));
+            taskPriority.removeFromListAndDeleteFile(taskList.getSelectionModel().getSelectedItem());
             taskList.getItems().remove(String.valueOf(taskList.getSelectionModel().getSelectedItem()));
         }
     }
