@@ -24,7 +24,19 @@ public class AverageController extends MenuBarController {
 
     @FXML
     private Label Results;
+    private double result;
 
+
+    public Double getResults() {
+        return result;
+    }
+    public void setSumGrade(double sumGrade) {
+        this.sumGrade = sumGrade;
+    }
+
+    public void setSumWeight(double sumWeight) {
+        this.sumWeight = sumWeight;
+    }
 
     private double sumGrade;
     private double sumWeight;
@@ -68,11 +80,16 @@ public class AverageController extends MenuBarController {
         Results.setText("");
     }
 
-    public void onResultClick(){
-        Results.setText(Double.toString(roundTo2DecimalPlace( sumGrade/sumWeight )));
+    public void countResult(){
+        result = roundTo2DecimalPlace( sumGrade/sumWeight );
     }
 
-    private static double roundTo2DecimalPlace(double value) {
+    public void onResultClick(){
+        countResult();
+        Results.setText(Double.toString(result));
+    }
+
+    public double roundTo2DecimalPlace(double value) {
         return Math.round(value * 100.0) / 100.0;
     }
 }
