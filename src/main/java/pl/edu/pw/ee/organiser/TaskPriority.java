@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class TaskPriority {
 
     private static FileWriter fileWriter;
-    static File priorities = new File("TasksInfo/priorities");
+    static File priorities = new File("DB/TasksInfo/priorities");
 
     public void handlePriority(String taskName, ChoiceBox<TextField> taskPriorityChoiceBox, Integer priority, ListView<Rectangle> priorityList) throws IOException {
 

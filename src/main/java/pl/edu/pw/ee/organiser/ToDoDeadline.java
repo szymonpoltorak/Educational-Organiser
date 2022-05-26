@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class ToDoDeadline {
 
-    static File priorities = new File("TasksInfo/priorities");
+    static File priorities = new File("DB/TasksInfo/priorities");
     private static FileWriter fileWriter;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 

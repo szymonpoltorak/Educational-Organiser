@@ -43,7 +43,7 @@ public class ToDoController extends MenuBarController implements Initializable {
     @FXML
     private DatePicker deadlineDatePicker;
     private File tasksFolder;
-    static File priorities = new File("TasksInfo/priorities");
+    private static File priorities = new File("DB/TasksInfo/priorities");
     private TaskPriority taskPriority = new TaskPriority();
 
 
