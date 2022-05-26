@@ -12,7 +12,7 @@ and technologies we used depended on our decisions.
 
 # Icon sources
 Everything we did is only for educational purposes and we do not claim ownership of those icons. \
-[Directory Icon](https://www.iconfinder.com/icons/4467200/document_file_folder_icon), \
+[Directory Icon](https://pixabay.com/pt/vectors/caixa-arquivo-pasta-1699630/), \
 [Note Icon](https://www.onlinewebfonts.com/icon/126426), \
 [Programme Icon](https://pixabay.com/illustrations/note-icon-symbol-sign-design-2389227), \
 [Main Page Photo](https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_960_720.jpg).
