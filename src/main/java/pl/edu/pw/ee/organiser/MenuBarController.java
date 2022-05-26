@@ -19,7 +19,7 @@ public class MenuBarController{
     private Parent root;
 
     public void switchToSceneMainScene (@NotNull MouseEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/Main.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -27,7 +27,7 @@ public class MenuBarController{
     }
 
     public void switchToSceneCalcScene (@NotNull MouseEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Calc.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/Calc.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -35,7 +35,7 @@ public class MenuBarController{
     }
 
     public void switchToSceneCalcScienceScene (@NotNull MouseEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("CalcScience.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/CalcScience.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -43,7 +43,7 @@ public class MenuBarController{
     }
 
     public void switchToSceneNoteScene (@NotNull MouseEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Note.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/Note.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -51,7 +51,7 @@ public class MenuBarController{
     }
 
     public void switchToToDoScene(@NotNull MouseEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ToDo.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/ToDo.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -59,7 +59,7 @@ public class MenuBarController{
     }
 
     public void switchToSchoolTimetable(@NotNull MouseEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SchoolTimetable.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/SchoolTimetable.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -67,7 +67,7 @@ public class MenuBarController{
     }
 
     public void switchToAverage(@NotNull MouseEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Average.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/Average.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -76,7 +76,7 @@ public class MenuBarController{
 
     public void switchToTimerScene (MouseEvent event) {
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Timer.fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("FXML/Timer.fxml")));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

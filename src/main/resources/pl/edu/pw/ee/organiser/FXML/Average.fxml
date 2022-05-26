@@ -91,7 +91,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneMainScene" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/menu_icon.png" />
+                        <Image url="@../menu_img/menu_icon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -100,7 +100,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToToDoScene" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/to_do.png" />
+                        <Image url="@../menu_img/to_do.png" />
                      </image>
                   </ImageView>
                </children>
@@ -109,7 +109,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneCalcScene" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/calculator_icon.png" />
+                        <Image url="@../menu_img/calculator_icon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -118,7 +118,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToTimerScene" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/timer_icon.png" />
+                        <Image url="@../menu_img/timer_icon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -127,7 +127,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSceneNoteScene" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/notes_icon.png" />
+                        <Image url="@../menu_img/notes_icon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -136,7 +136,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToAverage" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/icon-park_average.png" />
+                        <Image url="@../menu_img/icon-park_average.png" />
                      </image>
                   </ImageView>
                </children>
@@ -145,7 +145,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToSchoolTimetable" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menu_img/uil_schedule.png" />
+                        <Image url="@../menu_img/uil_schedule.png" />
                      </image>
                   </ImageView>
                </children>

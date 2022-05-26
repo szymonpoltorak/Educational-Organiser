@@ -118,6 +118,8 @@ public class ToDoController extends MenuBarController implements Initializable {
             var task = taskName.getText();
             var newTask = new File(tasksFolder.toPath() + "//" + task + ".txt");
 
+            taskPriorityChoiceBox.setValue(null);
+
             if (task.equals("")) {
                 var warning = new Alert(Alert.AlertType.WARNING);
                 warning.setTitle("Warning");
