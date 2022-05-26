@@ -220,6 +220,16 @@ public class TaskPriority {
 
             wholeLine = getWholeLine.nextLine();
             while (wholeLine.equals("")){
+                if(!getWholeLine.hasNextLine()){
+                    getPriority.close();
+                    getWholeLine.close();
+                    newFileText = priorityEquals3 + priorityEquals2.toString() + priorityEquals1;
+
+                    fileWriter = new FileWriter(priorities);
+                    fileWriter.write(newFileText);
+                    fileWriter.close();
+                    return;
+                }
                 wholeLine = getWholeLine.nextLine();
             }
 
@@ -230,6 +240,11 @@ public class TaskPriority {
                 if(!getPriority.hasNext()){
                     getPriority.close();
                     getWholeLine.close();
+                    newFileText = priorityEquals3 + priorityEquals2.toString() + priorityEquals1;
+
+                    fileWriter = new FileWriter(priorities);
+                    fileWriter.write(newFileText);
+                    fileWriter.close();
                     return;
                 }
                 current = getPriority.next();
@@ -305,10 +320,11 @@ public class TaskPriority {
         StringBuilder buffer = new StringBuilder();
         Scanner wholeFile = new Scanner(priorities);
         String current;
-        File fileToDelete = new File("Tasks/" + taskName + ".txt");
+        File fileToDelete = new File("DB/Tasks/" + taskName + ".txt");
         Scanner findTaskLine = new Scanner(priorities);
         String taskLine = null;
         String taskNameWithoutSpaces = taskName.replace(" ", "_");
+        String taskNameFromFile;
 
         while (wholeFile.hasNextLine()) {
             current = wholeFile.nextLine();
@@ -322,7 +338,10 @@ public class TaskPriority {
 
         while (findTaskLine.hasNextLine()){
             taskLine = findTaskLine.nextLine();
-            if(taskLine.contains(taskNameWithoutSpaces)){
+
+            taskNameFromFile = taskLine.split(" ")[1];
+
+            if(taskNameFromFile.equals(taskName)){
                 fileContents = fileContents.replaceAll(taskLine, "");
                 break;
             }
@@ -344,7 +363,6 @@ public class TaskPriority {
         while (findTaskLine.hasNextLine()){
             taskLine = findTaskLine.nextLine();
             if(taskLine.contains(taskNameWithoutSpaces)){
-                System.out.println("it conteains");
                 return currentLine;
             }
             if(!taskLine.equals("")) {
