@@ -52,7 +52,7 @@ public class ToDoController extends MenuBarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        tasksFolder = new File("Tasks");
+        tasksFolder = new File("DB/Tasks");
 
         TaskPriority taskPriority = new TaskPriority();
         ToDoDeadline toDoDeadline = new ToDoDeadline();
@@ -226,9 +226,11 @@ public class ToDoController extends MenuBarController implements Initializable {
     public static String getTaskNote(String currentTask, @NotNull File tasksFolder) throws IOException {
         var note = "";
 
+        String properTask = "Tasks\\"  + currentTask;
+
         for (File file : Objects.requireNonNull(tasksFolder.listFiles())){
             var task = ToDoController.getProperString(file.toString());
-            if (task.equals(currentTask)){
+            if (task.equals(properTask)){
                 note = Files.readString(file.toPath());
                 break;
             }
