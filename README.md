@@ -11,7 +11,7 @@ and technologies we used depended on our decisions.
 * CSS
 
 # Icon sources
-Everything we did is only for educational purposes and we do not claim ownership of those icons. \
+Everything we did is only for educational purposes and we do not claim ownership of those icons.
 
 **Directory Icon**
 * [Source](https://pixabay.com/pt/vectors/caixa-arquivo-pasta-1699630/),
