@@ -11,7 +11,7 @@ class ToDoTaskPriorityTest {
 
     private TaskPriority taskPriority;
     private FileWriter fileWriter;
-    private File priorities = new File("TasksInfo/priorities");
+    private final File priorities = new File("DB/TasksInfo/priorities");
 
     @BeforeEach
     public void init_test_instances(){
