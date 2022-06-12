@@ -25,4 +25,5 @@ Everything we did is only for educational purposes and we do not claim ownership
 * [Author](https://pixabay.com/pl/users/shafin_protic-16278454/),
 
 **Main Page Photo**
-* [Source](https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_960_720.jpg).
+* [Source](https://pixabay.com/pl/photos/ksi%C4%85%C5%BCki-literatura-wiedza-edukacja-5937716/),
+* [Author](https://pixabay.com/pl/users/hermann-130146/).
