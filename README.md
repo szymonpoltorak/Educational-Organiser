@@ -3,6 +3,11 @@ Project was made during project class of "Podstawy Inżynierii Oprogramowania" o
 goal was to create an local app which would help students in their everyday learning. Project's topic was our own idea 
 and technologies we used depended on our decisions.
 
+# Authors
+*[Szymon Półtorak](https://github.com/szymonpoltorak), [Adrian Nowosielski](https://github.com/aidian3k),
+[Cezary Skorupski](https://github.com/CezaryS8), [Krystian Sereda](https://github.com/seredak319), 
+[Michał Szlązak](https://github.com/Michal-Szlazak).*
+
 # Projects Environment
 * JDK 17.03 LTS,
 * Maven 3.8.1,
@@ -27,3 +32,21 @@ Everything we did is only for educational purposes and we do not claim ownership
 **Main Page Photo**
 * [Source](https://pixabay.com/pl/photos/ksi%C4%85%C5%BCki-literatura-wiedza-edukacja-5937716/),
 * [Author](https://pixabay.com/pl/users/hermann-130146/).
+
+# ScreenShots
+**Main Page**
+![](./readmeImages/MainPage.png)
+**Timer**
+![](./readmeImages/Timer.png)
+**Notes**
+![](./readmeImages/Notes.png)
+**ToDo**
+![](./readmeImages/ToDo.png)
+**Average**
+![](./readmeImages/Average.png)
+**TimeTable**
+![](./readmeImages/TimeTable.png)
+**StandardCalc**
+![](./readmeImages/StandardCalc.png)
+**AdvancedCalc**
+![](./readmeImages/AdvancedCalc.png)
