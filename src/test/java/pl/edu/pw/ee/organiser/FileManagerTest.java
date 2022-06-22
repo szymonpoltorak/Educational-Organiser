@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 class FileManagerTest {
-
     private FileManager fileManager;
     private NoteController noteController;
+
     @BeforeEach
     public void init_test_instances(){
         fileManager = new FileManager();
@@ -52,7 +52,6 @@ class FileManagerTest {
             dir.delete();
         }
 
-
         //when
         String result = fileManager.addNewNoteFM(fileName, notImportantItem, path);
 
@@ -62,13 +61,12 @@ class FileManagerTest {
     }
 
     @Test
-    void deleteFolderOrNoteFM_test_pass() {
+    void deleteFolderOrNoteFM_test_pass() throws IOException {
         //given
         String folderName = "FolderToDelete";
         TreeView<String> notImportantView = noteController.notesList;
         String path = NoteController.notesFolder.getAbsolutePath() + "//" + folderName;
         String expected = "success";
-
 
         //when
         String resultAddNewFolder = fileManager.addNewFolderFM(folderName);
@@ -77,9 +75,5 @@ class FileManagerTest {
         //then
         Assertions.assertEquals(expected, resultDeleteFolder);
         Assertions.assertEquals(expected, resultAddNewFolder);
-
     }
-
-
-
 }

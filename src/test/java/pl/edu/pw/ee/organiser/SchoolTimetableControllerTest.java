@@ -6,19 +6,25 @@ import org.junit.jupiter.api.Test;
 
 class SchoolTimetableControllerTest {
     private SchoolTimetableController schoolTimetableController;
+
     @BeforeEach
     void setUp() {
         schoolTimetableController = new SchoolTimetableController();
     }
+
     @AfterEach
     void tearDown() {
     }
+
     @Test
-    public void checkIfInitiallyReset(){
-        //When
+    void checkIfInitiallyReset(){
+        //given
         boolean expected=false;
-        //Then
+
+        //When
         boolean answer= schoolTimetableController.setHoursAndDaysTable();
+
+        //Then
         Assertions.assertEquals(expected,answer);
     }
 }
