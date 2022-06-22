@@ -8,7 +8,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class TaskPriority {
-
     private static FileWriter fileWriter;
     static File priorities = new File("DB/TasksInfo/priorities");
 

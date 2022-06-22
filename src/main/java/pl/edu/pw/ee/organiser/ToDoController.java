@@ -42,24 +42,19 @@ public class ToDoController extends MenuBarController implements Initializable {
     private ListView<Rectangle> priorityListView;
     @FXML
     private DatePicker deadlineDatePicker;
-    private File tasksFolder;
-    private static File priorities = new File("DB/TasksInfo/priorities");
-    private TaskPriority taskPriority = new TaskPriority();
-
-
+    private static final File tasksFolder = new File("DB/Tasks");
+    private static final File priorities = new File("DB/TasksInfo/priorities");
+    private final TaskPriority taskPriority = new TaskPriority();
     @FXML
     private ChoiceBox taskPriorityChoiceBox;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        tasksFolder = new File("DB/Tasks");
-
-        TaskPriority taskPriority = new TaskPriority();
-        ToDoDeadline toDoDeadline = new ToDoDeadline();
+    public void initialize(URL location, ResourceBundle resources) {
+        var taskPriority = new TaskPriority();
+        var toDoDeadline = new ToDoDeadline();
 
         ObservableList<Integer> priorityList = taskPriorityChoiceBox.getItems();
         priorityList.addAll(1,2,3);
-
 
         mainLabel.setText("To Do");
         taskList.setOrientation(Orientation.VERTICAL);
@@ -73,135 +68,96 @@ public class ToDoController extends MenuBarController implements Initializable {
         taskNote.setEditable(false);
 
         ToDoController.showCurrentTasks(taskList, tasksFolder);
-
-        try {
-            taskPriority.colorPriority(priorityListView);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            sortTasks(taskList);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        taskList.setOnMouseClicked(event -> {
-            var currentTask = taskList.getSelectionModel().getSelectedItem();
-
-            titlePane.setText(currentTask);
-            taskNote.setEditable(true);
             try {
-                taskNote.setText(ToDoController.getTaskNote(currentTask, tasksFolder));
-            } catch (IOException exception) {
+                taskPriority.colorPriority(priorityListView);
+                sortTasks(taskList);
+            } catch (FileNotFoundException e) {
                 ToDoController.ioExceptionError();
             }
 
-            if(currentTask != null) {
-                try {
-                    taskPriorityChoiceBox.setValue(taskPriority.getTaskPriority(currentTask));
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+            taskList.setOnMouseClicked(event -> {
+                var currentTask = taskList.getSelectionModel().getSelectedItem();
+
+                if (currentTask == null){
+                    return;
                 }
 
+                titlePane.setText(currentTask);
+                taskNote.setEditable(true);
                 try {
-                    if(toDoDeadline.getTaskDeadline(currentTask) == null){
+                    taskNote.setText(ToDoController.getTaskNote(currentTask, tasksFolder));
+                    taskPriorityChoiceBox.setValue(taskPriority.getTaskPriority(currentTask));
+                    if (toDoDeadline.getTaskDeadline(currentTask) == null) {
                         deadlineDatePicker.setValue(null);
                     }
                     deadlineDatePicker.setValue(toDoDeadline.getTaskDeadline(currentTask));
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-        addButton.setOnMouseClicked(event -> {
-            var task = taskName.getText();
-            var newTask = new File(tasksFolder.toPath() + "//" + task + ".txt");
-
-            taskPriorityChoiceBox.setValue(null);
-
-            if (task.equals("")) {
-                var warning = new Alert(Alert.AlertType.WARNING);
-                warning.setTitle("Warning");
-                warning.setHeaderText("Null task.");
-                warning.setContentText("You have not given any task!");
-                warning.show();
-            }
-            else if (!newTask.exists()){
-                try {
-                    newTask.createNewFile();
-                    taskList.getItems().add(task);
-                } catch (IOException e) {
+                } catch (IOException exception) {
                     ToDoController.ioExceptionError();
                 }
+            });
 
-                try {
-                    taskPriority.handlePriority(taskName.getText(), taskPriorityChoiceBox, null, priorityListView);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            addButton.setOnMouseClicked(event -> {
+                var task = taskName.getText();
+                var newTask = new File(tasksFolder.toPath() + "//" + task + ".txt");
+
+                taskPriorityChoiceBox.setValue(null);
+
+                if (task.equals("")) {
+                    var warning = new Alert(Alert.AlertType.WARNING);
+                    warning.setTitle("Warning");
+                    warning.setHeaderText("Null task.");
+                    warning.setContentText("You have not given any task!");
+                    warning.show();
+                } else if (!newTask.exists()) {
+                    try {
+                        if (!newTask.createNewFile()){
+                            var alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Error");
+                            alert.setContentText("I was not able to create folder");
+                            alert.showAndWait();
+                            return;
+                        }
+                        taskList.getItems().add(task);
+                        taskPriority.handlePriority(taskName.getText(), taskPriorityChoiceBox, null, priorityListView);
+                        toDoDeadline.setDeadlineNull(taskName.getText());
+                    } catch (IOException e) {
+                        ToDoController.ioExceptionError();
+                    }
+
+                } else {
+                    var warning = new Alert(Alert.AlertType.WARNING);
+                    warning.setTitle("Warning");
+                    warning.setHeaderText("File exists!");
+                    warning.setContentText("The task with such name already exist!");
+                    warning.show();
+                }
+
+            });
+
+            saveButton.setOnMouseClicked(event -> {
+                if (taskNote.getText() == null || taskNote.getText().equals("")) {
+                    var info = new Alert(Alert.AlertType.INFORMATION);
+                    titlePane.setText("Choose your task!");
+                    info.setTitle("Info");
+                    info.setHeaderText("Nothing to do.");
+                    info.setContentText("There is no text to be inserted.");
+                    info.showAndWait();
+                    return;
                 }
 
                 try {
-                    toDoDeadline.setDeadlineNull(taskName.getText());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-            }
-            else {
-                var warning = new Alert(Alert.AlertType.WARNING);
-                warning.setTitle("Warning");
-                warning.setHeaderText("File exists!");
-                warning.setContentText("The task with such name already exist!");
-                warning.show();
-            }
-
-        });
-
-        saveButton.setOnMouseClicked(event -> {
-            if (taskNote.getText() == null || taskNote.getText().equals("")){
-                var info = new Alert(Alert.AlertType.INFORMATION);
-                titlePane.setText("Choose your task!");
-                info.setTitle("Info");
-                info.setHeaderText("Nothing to do.");
-                info.setContentText("There is no text to be inserted.");
-                info.show();
-            }
-            else {
-                Path currentTaskNote = Path.of(tasksFolder.getPath() + "//" + taskList.getSelectionModel().getSelectedItem() + ".txt");
-                try {
+                    var currentTaskNote = Path.of(tasksFolder.getPath() + "//" + taskList.getSelectionModel().getSelectedItem() + ".txt");
                     Files.writeString(currentTaskNote, taskNote.getText());
+
+                    taskPriority.handlePriority(taskList.getSelectionModel().getSelectedItem(), taskPriorityChoiceBox, (Integer) taskPriorityChoiceBox.getValue(), priorityListView);
+                    taskPriority.colorPriority(priorityListView);
+                    toDoDeadline.changeDeadline(taskList.getSelectionModel().getSelectedItem(), deadlineDatePicker);
+                    sortTasks(taskList);
                 } catch (IOException e) {
                     ToDoController.ioExceptionError();
                 }
-            }
-
-            try {
-                taskPriority.handlePriority(taskList.getSelectionModel().getSelectedItem(), taskPriorityChoiceBox, (Integer) taskPriorityChoiceBox.getValue(), priorityListView);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                taskPriority.colorPriority(priorityListView);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                toDoDeadline.changeDeadline(taskList.getSelectionModel().getSelectedItem(), deadlineDatePicker);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                sortTasks(taskList);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-
-        });
-
+            });
     }
-
-
 
     public void switchToDone() throws IOException {
         if(taskList.getSelectionModel().getSelectedItem() != null) {
@@ -223,12 +179,9 @@ public class ToDoController extends MenuBarController implements Initializable {
         }
     }
 
-
-
     public static String getTaskNote(String currentTask, @NotNull File tasksFolder) throws IOException {
         var note = "";
-
-        String properTask = "Tasks\\"  + currentTask;
+        var properTask = "Tasks\\"  + currentTask;
 
         for (File file : Objects.requireNonNull(tasksFolder.listFiles())){
             var task = ToDoController.getProperString(file.toString());
@@ -237,12 +190,11 @@ public class ToDoController extends MenuBarController implements Initializable {
                 break;
             }
         }
-
         return note;
     }
 
     public static void ioExceptionError(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        var alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("IOException!");
         alert.setHeaderText("During runtime error occurred.");
         alert.setContentText("Input Output exception occurred in method!");
@@ -253,39 +205,31 @@ public class ToDoController extends MenuBarController implements Initializable {
         return task.substring(task.indexOf("\\") + 1, task.indexOf("."));
     }
 
-    public static void sortTasks(ListView<String> taskList) throws FileNotFoundException {
-
-        Scanner sc = new Scanner(priorities);
-        String currentTask;
-        String taskName;
-        String taskWithoutUnderline;
-        int index = 0;
-
+    public static void sortTasks(@NotNull ListView<String> taskList) throws FileNotFoundException {
+        var index = 0;
         taskList.getItems().clear();
 
-        while(sc.hasNext()) {
+        try (var sc = new Scanner(priorities)) {
+            while (sc.hasNext()) {
+                var currentTask = sc.next();
 
-            currentTask = sc.next();
-
-            if(currentTask.equals("")){
-                break;
-            }
-
-            while (!currentTask.equals("#taskName")){
-
-                if(!sc.hasNext()){
-                    sc.close();
-                    return;
+                if (currentTask.equals("")) {
+                    break;
                 }
-                currentTask = sc.next();
+
+                while (!currentTask.equals("#taskName")) {
+                    if (!sc.hasNext()) {
+                        return;
+                    }
+                    currentTask = sc.next();
+                }
+                var taskName = sc.next();
+                var taskWithoutUnderline = taskName.replace("_", " ");
+
+                taskList.getItems().add(index, taskWithoutUnderline);
+                index++;
+
             }
-            taskName = sc.next();
-            taskWithoutUnderline = taskName.replace("_", " ");
-
-            taskList.getItems().add(index, taskWithoutUnderline);
-            index++;
-
         }
-        sc.close();
     }
 }

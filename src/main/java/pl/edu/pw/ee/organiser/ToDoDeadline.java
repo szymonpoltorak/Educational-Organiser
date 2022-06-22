@@ -1,6 +1,7 @@
 package pl.edu.pw.ee.organiser;
 
 import javafx.scene.control.DatePicker;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,205 +12,148 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class ToDoDeadline {
-
-    static File priorities = new File("DB/TasksInfo/priorities");
+    private static final File priorities = new File("DB/TasksInfo/priorities");
     private static FileWriter fileWriter;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public LocalDate getTaskDeadline(String taskName) throws FileNotFoundException {
-
-        Scanner findDeadline = new Scanner(priorities);
-        String taskNameWithoutSpaces;
+    public LocalDate getTaskDeadline(@NotNull String taskName) throws FileNotFoundException {
         LocalDate deadline;
-        String taskNameFromFile;
-        String current;
+        var taskNameWithoutSpaces = taskName.replace(" ", "_");
 
-        taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
-        while (findDeadline.hasNext()) {
+        try (var findDeadline = new Scanner(priorities)) {
+            while (findDeadline.hasNext()) {
+                var current = findDeadline.next();
 
-            current = findDeadline.next();
-
-            while (!current.equals("#taskName")){
-
-                if(!findDeadline.hasNext()){
-                    findDeadline.close();
-                    return null;
-                }
-                current = findDeadline.next();
-            }
-            taskNameFromFile = findDeadline.next();
-
-            if (taskNameFromFile.equals(taskNameWithoutSpaces)) {
-
-                current = findDeadline.next();
-
-                while (!current.equals("#deadline")){
-
-                    if(!findDeadline.hasNext()){
-                        findDeadline.close();
+                while (!current.equals("#taskName")) {
+                    if (!findDeadline.hasNext()) {
                         return null;
                     }
                     current = findDeadline.next();
                 }
-                current = findDeadline.next();
-                if (current.equals("null")){
-                    findDeadline.close();
-                    return null;
-                }
+                var taskNameFromFile = findDeadline.next();
 
-                deadline = LocalDate.parse(current, formatter);
-                return deadline;
+                if (taskNameFromFile.equals(taskNameWithoutSpaces)) {
+                    current = findDeadline.next();
+
+                    while (!current.equals("#deadline")) {
+
+                        if (!findDeadline.hasNext()) {
+                            return null;
+                        }
+                        current = findDeadline.next();
+                    }
+                    current = findDeadline.next();
+
+                    if (current.equals("null")) {
+                        return null;
+                    }
+                    deadline = LocalDate.parse(current, formatter);
+                    return deadline;
+                }
             }
         }
-        findDeadline.close();
         return null;
-
     }
-    public void changeDeadline(String taskName, DatePicker deadlineDatePicker) throws IOException {
 
+    public void changeDeadline(String taskName, DatePicker deadlineDatePicker) throws IOException {
         if(taskName == null){
             return;
         }
-
-        String taskNameWithoutSpaces;
         String wholeLine = null;
-        String current;
-        String taskNameFromFile;
         String deadlineFromFile = null;
-        String deadline;
-
         String wholeFile = getWholeFile();
-        String changedFile;
-        String changedLine;
+        var taskNameWithoutSpaces = taskName.replace(" ", "_");
 
-        Scanner findTask = new Scanner(priorities);
-        Scanner getWholeLine = new Scanner(priorities);
+        try (var findTask = new Scanner(priorities)) {
+            var getWholeLine = new Scanner(priorities);
 
-        taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
+            while (findTask.hasNext() && getWholeLine.hasNextLine()) {
+                wholeLine = getWholeLine.nextLine();
+                var current = findTask.next();
 
-        while(findTask.hasNext() && getWholeLine.hasNextLine()) {
-
-            wholeLine = getWholeLine.nextLine();
-            current = findTask.next();
-
-            while (!current.equals("#taskName")) {
-
-                if (!findTask.hasNext()) {
-                    findTask.close();
-                    getWholeLine.close();
-                    return;
-                }
-                current = findTask.next();
-            }
-            taskNameFromFile = findTask.next();
-
-            if(taskNameFromFile.equals(taskNameWithoutSpaces)){
-
-                while (!current.equals("#deadline")) {
-
+                while (!current.equals("#taskName")) {
                     if (!findTask.hasNext()) {
-                        findTask.close();
                         getWholeLine.close();
                         return;
                     }
                     current = findTask.next();
                 }
-                deadlineFromFile = findTask.next();
-                break;
+                var taskNameFromFile = findTask.next();
+
+                if (taskNameFromFile.equals(taskNameWithoutSpaces)) {
+                    while (!current.equals("#deadline")) {
+                        if (!findTask.hasNext()) {
+                            getWholeLine.close();
+                            return;
+                        }
+                        current = findTask.next();
+                    }
+                    deadlineFromFile = findTask.next();
+                    break;
+                }
             }
+            getWholeLine.close();
         }
+        fileWriter = new FileWriter(priorities, true);
 
-        try {
-            fileWriter = new FileWriter(priorities, true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        deadline = String.valueOf(deadlineDatePicker.getValue());
+        var deadline = String.valueOf(deadlineDatePicker.getValue());
 
         assert wholeLine != null;
         assert deadlineFromFile != null;
-        changedLine = wholeLine.replaceAll(deadlineFromFile, deadline);
-        changedFile = wholeFile.replaceAll(wholeLine, changedLine);
+        var changedLine = wholeLine.replaceAll(deadlineFromFile, deadline);
+        var changedFile = wholeFile.replaceAll(wholeLine, changedLine);
 
         fileWriter = new FileWriter(priorities);
         fileWriter.write(changedFile);
-
-        findTask.close();
-        getWholeLine.close();
-
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        fileWriter.close();
     }
-    public static String getWholeFile() throws FileNotFoundException {
 
-        Scanner wholeFile = new Scanner(priorities);
-        StringBuilder buffer = new StringBuilder();
+    public static @NotNull String getWholeFile() throws FileNotFoundException {
+        var buffer = new StringBuilder();
 
-        while (wholeFile.hasNextLine()) {
-            buffer.append(wholeFile.nextLine()).append(System.lineSeparator());
+        try (var wholeFile = new Scanner(priorities)) {
+            while (wholeFile.hasNextLine()) {
+                buffer.append(wholeFile.nextLine()).append(System.lineSeparator());
+            }
+            return buffer.toString();
         }
-        String fileContents = buffer.toString();
-        wholeFile.close();
-
-        return fileContents;
     }
 
     public void setDeadlineNull(String taskName) throws IOException {
-
         if(taskName == null){
             return;
         }
-
-        String taskNameWithoutSpaces;
         String wholeLine = null;
-        String current;
-        String taskNameFromFile;
-        String wholeFile = getWholeFile();
-        String changedFile;
+        var wholeFile = getWholeFile();
+        var taskNameWithoutSpaces = taskName.replace(" ", "_");
 
-        Scanner findTask = new Scanner(priorities);
-        Scanner getWholeLine = new Scanner(priorities);
+        try (var findTask = new Scanner(priorities)) {
+            var getWholeLine = new Scanner(priorities);
 
-        taskNameWithoutSpaces = taskName.replaceAll(" ", "_");
+            while (findTask.hasNext() && getWholeLine.hasNextLine()) {
+                wholeLine = getWholeLine.nextLine();
+                var current = findTask.next();
 
-        while(findTask.hasNext() && getWholeLine.hasNextLine()) {
+                while (!current.equals("#taskName")) {
 
-            wholeLine = getWholeLine.nextLine();
-            current = findTask.next();
-
-            while (!current.equals("#taskName")) {
-
-                if (!findTask.hasNext()) {
-                    findTask.close();
-                    getWholeLine.close();
-                    return;
+                    if (!findTask.hasNext()) {
+                        getWholeLine.close();
+                        return;
+                    }
+                    current = findTask.next();
                 }
-                current = findTask.next();
-            }
-            taskNameFromFile = findTask.next();
+                var taskNameFromFile = findTask.next();
 
-            if(taskNameFromFile.equals(taskNameWithoutSpaces)){
-                break;
+                if (taskNameFromFile.equals(taskNameWithoutSpaces)) {
+                    break;
+                }
             }
+            getWholeLine.close();
         }
 
-        try {
-            fileWriter = new FileWriter(priorities, true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
+        fileWriter = new FileWriter(priorities, true);
         assert wholeLine != null;
-        changedFile = wholeFile.replaceAll(wholeLine, wholeLine + " #deadline null");
-
-        findTask.close();
-        getWholeLine.close();
+        var changedFile = wholeFile.replaceAll(wholeLine, wholeLine + " #deadline null");
 
         fileWriter = new FileWriter(priorities);
         fileWriter.write(changedFile);
