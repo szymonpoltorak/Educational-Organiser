@@ -43,6 +43,25 @@ public class NoteController extends MenuBarController implements Initializable{
     @FXML
     private ChoiceBox<Integer> fontSizeChoiceBox;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
+        TreeItem<String> treeRoot = new TreeItem<>("Notes", new ImageView(dirIcon));
+
+        ObservableList<Integer> fontSizeList = fontSizeChoiceBox.getItems();
+
+        for (int fontSize = 10; fontSize <= 50; fontSize += 2){
+            fontSizeList.add(fontSize);
+        }
+
+        fontSizeChoiceBox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/FontSize.css")).toExternalForm());
+        fontSizeChoiceBox.setOnAction(actionEvent -> changeFontSize(fontSizeChoiceBox.getValue(), notesArea));
+
+        notesList.setRoot(treeRoot);
+        updateNotesList();
+
+    }
+
     public void save(){
         if (currentNote == null){
             return;
@@ -221,32 +240,5 @@ public class NoteController extends MenuBarController implements Initializable{
 
     public void changeFontSize(int fontSize, TextArea notesArea){
         notesArea.setStyle("-fx-font-size: " + fontSize);
-    }
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
-        TreeItem<String> treeRoot = new TreeItem<>("Notes", new ImageView(dirIcon));
-
-        ObservableList<Integer> fontSizeList = fontSizeChoiceBox.getItems();
-
-        for(int fontSize = 10; fontSize <= 50; fontSize += 2){
-            fontSizeList.add(fontSize);
-        }
-
-        fontSizeChoiceBox.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource(
-                        "css/FontSize.css"
-                )).toExternalForm()
-        );
-
-        fontSizeChoiceBox.setOnAction(actionEvent -> changeFontSize(fontSizeChoiceBox.getValue(), notesArea));
-
-
-        notesList.setRoot(treeRoot);
-        updateNotesList();
-
     }
 }

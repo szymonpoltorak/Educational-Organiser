@@ -64,16 +64,13 @@ public class ToDoDeadline {
         String wholeFile = getWholeFile();
         var taskNameWithoutSpaces = taskName.replace(" ", "_");
 
-        try (var findTask = new Scanner(priorities)) {
-            var getWholeLine = new Scanner(priorities);
-
+        try (var findTask = new Scanner(priorities); var getWholeLine = new Scanner(priorities)) {
             while (findTask.hasNext() && getWholeLine.hasNextLine()) {
                 wholeLine = getWholeLine.nextLine();
                 var current = findTask.next();
 
                 while (!current.equals("#taskName")) {
                     if (!findTask.hasNext()) {
-                        getWholeLine.close();
                         return;
                     }
                     current = findTask.next();
@@ -83,7 +80,6 @@ public class ToDoDeadline {
                 if (taskNameFromFile.equals(taskNameWithoutSpaces)) {
                     while (!current.equals("#deadline")) {
                         if (!findTask.hasNext()) {
-                            getWholeLine.close();
                             return;
                         }
                         current = findTask.next();
@@ -92,7 +88,6 @@ public class ToDoDeadline {
                     break;
                 }
             }
-            getWholeLine.close();
         }
         fileWriter = new FileWriter(priorities, true);
 
@@ -127,9 +122,7 @@ public class ToDoDeadline {
         var wholeFile = getWholeFile();
         var taskNameWithoutSpaces = taskName.replace(" ", "_");
 
-        try (var findTask = new Scanner(priorities)) {
-            var getWholeLine = new Scanner(priorities);
-
+        try (var findTask = new Scanner(priorities); var getWholeLine = new Scanner(priorities)) {
             while (findTask.hasNext() && getWholeLine.hasNextLine()) {
                 wholeLine = getWholeLine.nextLine();
                 var current = findTask.next();
@@ -137,7 +130,6 @@ public class ToDoDeadline {
                 while (!current.equals("#taskName")) {
 
                     if (!findTask.hasNext()) {
-                        getWholeLine.close();
                         return;
                     }
                     current = findTask.next();
@@ -148,7 +140,6 @@ public class ToDoDeadline {
                     break;
                 }
             }
-            getWholeLine.close();
         }
 
         fileWriter = new FileWriter(priorities, true);
