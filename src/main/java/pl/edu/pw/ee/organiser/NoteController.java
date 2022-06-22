@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,18 +44,27 @@ public class NoteController extends MenuBarController implements Initializable{
     @FXML
     private ChoiceBox<Integer> fontSizeChoiceBox;
 
-    public void save(){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
+        TreeItem<String> treeRoot = new TreeItem<>("Notes", new ImageView(dirIcon));
+        ObservableList<Integer> fontSizeList = fontSizeChoiceBox.getItems();
+
+        for (int fontSize = 10; fontSize <= 50; fontSize += 2){
+            fontSizeList.add(fontSize);
+        }
+        fontSizeChoiceBox.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/FontSize.css")).toExternalForm());
+        fontSizeChoiceBox.setOnAction(actionEvent -> changeFontSize(fontSizeChoiceBox.getValue(), notesArea));
+
+        notesList.setRoot(treeRoot);
+        updateNotesList();
+    }
+
+    public void save() throws IOException{
         if (currentNote == null){
             return;
         }
-        try {
-            Files.writeString(currentNote, notesArea.getText());
-        }
-        catch (IOException e){
-            System.out.println("IOException found!!!!");
-            e.printStackTrace();
-            System.exit(1);
-        }
+        Files.writeString(currentNote, notesArea.getText());
     }
 
     public void useSelectedItem(){
@@ -82,7 +92,6 @@ public class NoteController extends MenuBarController implements Initializable{
         }
         currentNote = currentPath;
 
-
         try {
             notesArea.setText(String.join("\n", Files.readAllLines(currentNote)));
         } catch (IOException exception){
@@ -93,12 +102,11 @@ public class NoteController extends MenuBarController implements Initializable{
             error.show();
         }
         contextMenuSetup();
-
     }
 
     private void updateNotesList(){
-        Image noteIcon = new Image(Objects.requireNonNull(getClass().getResource("img/note.png")).toString());
-        Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
+        var noteIcon = new Image(Objects.requireNonNull(getClass().getResource("img/note.png")).toString());
+        var dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
 
         notesList.getRoot().getChildren().clear();
         if (notesFolder.exists() && notesFolder.isDirectory()){
@@ -146,7 +154,6 @@ public class NoteController extends MenuBarController implements Initializable{
                 cancel.setVisible(true);
             }
         }
-
     }
 
     public void addNewNote() {
@@ -158,11 +165,10 @@ public class NoteController extends MenuBarController implements Initializable{
 
     public void addNewNoteButton() throws IOException {
         TreeItem<String> item = notesList.getSelectionModel().getSelectedItem();
-        String newNoteName = addFileName.getText();
-        String path = String.valueOf(currentPath.toAbsolutePath());
-
-        FileManager fileManager = new FileManager();
-        String result = fileManager.addNewNoteFM(newNoteName, item, path);
+        var newNoteName = addFileName.getText();
+        var path = String.valueOf(currentPath.toAbsolutePath());
+        var fileManager = new FileManager();
+        var result = fileManager.addNewNoteFM(newNoteName, item, path);
 
         if (Objects.equals(result, "no name given")) {
             addFileName.setPromptText("Add the name first!!!");
@@ -185,9 +191,9 @@ public class NoteController extends MenuBarController implements Initializable{
         addNotePane.setVisible(false);
     }
 
-    public void deleteFolderOrNote(){
-        FileManager fileManager = new FileManager();
-        String result = fileManager.deleteFolderOrNoteFM(notesList, currentPath);
+    public void deleteFolderOrNote() throws IOException{
+        var fileManager = new FileManager();
+        var result = fileManager.deleteFolderOrNoteFM(notesList, currentPath);
 
         if (Objects.equals(result, "success")){
             updateNotesList();
@@ -199,10 +205,10 @@ public class NoteController extends MenuBarController implements Initializable{
     }
 
     public void addNewFolder(){
-        Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
-        String fName = folderName.getText();
-        FileManager fileManager = new FileManager();
-        String result = fileManager.addNewFolderFM(fName);
+        var dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
+        var fName = folderName.getText();
+        var fileManager = new FileManager();
+        var result = fileManager.addNewFolderFM(fName);
 
         if(Objects.equals(result, "no name given")){
             folderName.setPromptText("Add the name first!!!");
@@ -219,34 +225,7 @@ public class NoteController extends MenuBarController implements Initializable{
         }
     }
 
-    public void changeFontSize(int fontSize, TextArea notesArea){
+    public void changeFontSize(int fontSize, @NotNull TextArea notesArea){
         notesArea.setStyle("-fx-font-size: " + fontSize);
-    }
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image dirIcon = new Image(Objects.requireNonNull(getClass().getResource("img/directory-icon.png")).toString());
-        TreeItem<String> treeRoot = new TreeItem<>("Notes", new ImageView(dirIcon));
-
-        ObservableList<Integer> fontSizeList = fontSizeChoiceBox.getItems();
-
-        for(int fontSize = 10; fontSize <= 50; fontSize += 2){
-            fontSizeList.add(fontSize);
-        }
-
-        fontSizeChoiceBox.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource(
-                        "css/FontSize.css"
-                )).toExternalForm()
-        );
-
-        fontSizeChoiceBox.setOnAction(actionEvent -> changeFontSize(fontSizeChoiceBox.getValue(), notesArea));
-
-
-        notesList.setRoot(treeRoot);
-        updateNotesList();
-
     }
 }

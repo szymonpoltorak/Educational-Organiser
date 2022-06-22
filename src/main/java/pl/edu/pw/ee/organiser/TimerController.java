@@ -11,27 +11,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TimerController extends MenuBarController implements Initializable {
-
     @FXML
     private TextField focusTime;
-
     @FXML
     private Label minute;
-
     @FXML
     private TextArea notification;
     @FXML
     private Label type;
-
     @FXML
     private TextField restTime;
-
     @FXML
     private Label second;
-
     @FXML
     private TextField series;
-
     private  boolean canRun;
     private static int seriesCounter;
     private Timer timer;
@@ -79,7 +72,6 @@ public class TimerController extends MenuBarController implements Initializable 
                 if(currentSeconds != 0 ){
                     second.setText(Integer.toString(currentSeconds));
                 }
-
                 else {
                     time=0;
                     currentMinutes = Integer.parseInt(minute.getText()) - 1;
@@ -89,9 +81,7 @@ public class TimerController extends MenuBarController implements Initializable 
                         changeView();
                     }
                 }
-
             }
-
         }
 
         public void reset() {
@@ -102,7 +92,6 @@ public class TimerController extends MenuBarController implements Initializable 
 
             setButtonSetHandler();
             super.stop();
-
         }
 
         public void changeView(){
@@ -123,7 +112,6 @@ public class TimerController extends MenuBarController implements Initializable 
                 stop();
                 return;
             }
-
             time=0;
             String notificationHistory = notification.getText() + "You have completed your focus time! Time to rest :)"+"\n";
             notification.setText(notificationHistory);
@@ -135,13 +123,10 @@ public class TimerController extends MenuBarController implements Initializable 
 
             timer.stop();
             startTimerHandler();
-
         }
-
     }
 
     public void setButtonSetHandler(){
-
         if(!canRun && !isFirstStart){
             return;
         }
@@ -159,12 +144,10 @@ public class TimerController extends MenuBarController implements Initializable 
 
         canRun = true;
         isFirstStart = true;
-
     }
 
     public void startTimerHandler(){
         if(seriesCounter%2==0) {
-
             if (canRun && isFirstStart) {
                 canRun = false;
                 type.setText("Focus time");
@@ -181,9 +164,7 @@ public class TimerController extends MenuBarController implements Initializable 
             } else {
                 timer.start();
             }
-
         }
-
         else {
             if (canRun && isFirstStart) {
                 canRun = false;
@@ -207,7 +188,6 @@ public class TimerController extends MenuBarController implements Initializable 
         type.setText("Focus time");
 
         timer.reset();
-
     }
 
     public void saveButtonHandler(){
@@ -228,10 +208,8 @@ public class TimerController extends MenuBarController implements Initializable 
         if(canRun || isFirstStart){
             return;
         }
-
         canRun = true;
         timer.stop();
-
     }
 
     public boolean checkIfReset(){

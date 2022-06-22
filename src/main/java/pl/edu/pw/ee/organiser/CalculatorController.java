@@ -8,7 +8,6 @@ import javafx.scene.control.TextArea;
 import org.jetbrains.annotations.NotNull;
 
 public class CalculatorController extends MenuBarController{
-
     @FXML
     private Label prevNum;
     @FXML
@@ -17,7 +16,6 @@ public class CalculatorController extends MenuBarController{
     private Label labelM;
     @FXML
     private TextArea history;
-
     private double num1=0;
     private String usedOperator ="";
     private boolean check=true;
@@ -31,30 +29,23 @@ public class CalculatorController extends MenuBarController{
     public double create(double num1, double num2, @NotNull String operator) {
         switch(operator){
             case "+": return num1+num2;
-
             case "-": return num1-num2;
-
             case "x": return num1*num2;
-
             case "÷":{
                 if(num2==0) return -1;
                 else return num1/num2;
             }
             case "x^y": return Math.pow(num1, num2);
-
         }
         return 0.0;
     }
     public void compute(ActionEvent e){
-
         if(check) {
             result.setText("");
             prevNum.setText("");
             check = false;
         }
-
         Button but=(Button)e.getSource();
-
         String val=but.getText();
 
         if(val.equals(",")){
@@ -70,13 +61,10 @@ public class CalculatorController extends MenuBarController{
             }
             return;
         }
-
         String text=result.getText();
 
-        if(text.length()==1) {
-            if (text.charAt(0) == '0' && !val.equals(".")){
-                return;
-            }
+        if(text.length()==1 && text.charAt(0) == '0' && !val.equals(".")) {
+            return;
         }
         if(canAdd) {
             result.setText(result.getText() + val);
@@ -106,7 +94,6 @@ public class CalculatorController extends MenuBarController{
             if(usedOperator.isEmpty()){
                 return;
             }
-
             double num2=Double.parseDouble(result.getText());
             double score=create(num1,num2, usedOperator);
 
@@ -118,7 +105,6 @@ public class CalculatorController extends MenuBarController{
                 history.appendText(prevNum.getText() + " = ");
                 history.appendText( result.getText() + "\n");
             }
-
             usedOperator ="";
             check=false;
             usedDot =true;
@@ -200,9 +186,9 @@ public class CalculatorController extends MenuBarController{
                     } else {
                         result.setText("OVERFLOW");
                     }
-                } else
+                } else {
                     result.setText("BLAD");
-                //history.appendText("BLAD" );
+                }
                 break;
             case "log":
                 result.setText(CalcUtils.getLogString(num1));
@@ -233,14 +219,12 @@ public class CalculatorController extends MenuBarController{
                 history.appendText("cot("+num1+") = "+ CalcUtils.getCotString(num1)+"\n");
                 break;
         }
-
         usedDot =true;
         prevNum.setText("");
         canAdd =false;
     }
 
-    //TODO: rozwiazac problem z '.' przy wybieraniu MRC, przetestować dokładnie MRC, ustawic przyciski
-    public void storageInMemoryM(ActionEvent e) {
+    public void storageInMemoryM(@NotNull ActionEvent e) {
         Button button=(Button)e.getSource();
         String val=button.getText();
 
@@ -252,7 +236,6 @@ public class CalculatorController extends MenuBarController{
             }
             else if(canAddMrc){
                 val = String.valueOf(numRemembered);
-
                 if(check) {
                     result.setText("");
                     prevNum.setText("");
@@ -283,7 +266,5 @@ public class CalculatorController extends MenuBarController{
                 mrcClickBefore =false;
             }
         }
-
     }
-
 }

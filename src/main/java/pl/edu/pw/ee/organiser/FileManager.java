@@ -14,14 +14,14 @@ public class FileManager {
     private NoteController noteController = new NoteController();
 
     public String addNewFolderFM(String folderName){
-        String fName = folderName;
-        String folderPath = NoteController.notesFolder.getAbsolutePath();
+        var fName = folderName;
+        var folderPath = NoteController.notesFolder.getAbsolutePath();
 
         if(Objects.equals(fName, "")) {
             return "no name given";
         }
 
-        File newFolder = new File(folderPath + "//" +fName);
+        var newFolder = new File(folderPath + "//" +fName);
         if(newFolder.exists()) {
             return "already exists";
         }
@@ -36,8 +36,7 @@ public class FileManager {
         if(newNoteName.equals("")){
             return "no name given";
         }
-
-        File newNote = new File(currentPath + "//" + newNoteName);
+        var newNote = new File(currentPath + "//" + newNoteName);
 
         if(newNote.exists()){
             return "already exists";
@@ -46,27 +45,22 @@ public class FileManager {
         if (!newNote.createNewFile()){
             throw new IllegalStateException("I can't create new file!");
         }
-
         return "success";
-
     }
 
-    public String deleteFolderOrNoteFM(TreeView<String> notesList, @NotNull Path currentPath){
-        File file = currentPath.toFile();
-        try {
-            if (file.isDirectory() && Objects.requireNonNull(file.listFiles()).length > 0) {
-                for (File f : Objects.requireNonNull(file.listFiles())) {
-                    if (!f.delete()){
-                        System.out.println(f);
-                        throw new IllegalStateException("I can't delete file!");
-                    }
+    public String deleteFolderOrNoteFM(TreeView<String> notesList, @NotNull Path currentPath) throws IOException{
+        var file = currentPath.toFile();
+
+        if (file.isDirectory() && Objects.requireNonNull(file.listFiles()).length > 0) {
+            for (File f : Objects.requireNonNull(file.listFiles())) {
+                if (!f.delete()){
+                    System.out.println(f);
+                    throw new IllegalStateException("I can't delete file!");
                 }
             }
-            Files.delete(currentPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(6);
         }
+        Files.delete(currentPath);
+
         return "success";
     }
 

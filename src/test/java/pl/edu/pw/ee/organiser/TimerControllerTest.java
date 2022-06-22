@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 class TimerControllerTest {
-
     private TimerController timerController;
 
     @BeforeEach
@@ -14,15 +13,14 @@ class TimerControllerTest {
     }
 
     @Test
-    public void checkIfInitiallyReset(){
-
-        //When
+    void checkIfInitiallyReset(){
+        //given
         boolean expected=true;
 
-        //Then
-
+        //When
         boolean answer=timerController.checkIfReset();
 
+        //Then
         Assertions.assertEquals(expected,answer);
     }
 }

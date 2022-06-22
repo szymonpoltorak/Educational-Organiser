@@ -5,9 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AverageControllerTest {
-
-
+class AverageControllerTest {
     private static AverageController averageController;
 
     @BeforeEach
@@ -16,8 +14,7 @@ public class AverageControllerTest {
     }
 
     @Test
-    public void averageResultCheck(){
-
+    void averageResultCheck(){
         //given
         double expected = 2.86;
         double restult;
@@ -33,8 +30,7 @@ public class AverageControllerTest {
     }
 
     @Test
-    public void roundToTwoDecimalTest(){
-
+    void roundToTwoDecimalTest(){
         //given
         double expected = 3.41; //58/17
         double result;
@@ -46,5 +42,4 @@ public class AverageControllerTest {
         Assertions.assertEquals(expected,result);
 
     }
-
 }

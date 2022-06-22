@@ -8,18 +8,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 class ToDoTaskPriorityTest {
-
     private TaskPriority taskPriority;
     private FileWriter fileWriter;
     private final File priorities = new File("DB/TasksInfo/priorities");
 
     @BeforeEach
-    public void init_test_instances(){
+    void init_test_instances(){
         taskPriority = new TaskPriority();
     }
 
     @AfterEach
-    public void deleteChanges() throws IOException {
+    void deleteChanges() throws IOException {
 
         StringBuilder buffer = new StringBuilder();
         Scanner wholeFile = new Scanner(priorities);
@@ -42,20 +41,20 @@ class ToDoTaskPriorityTest {
         fileWriter.close();
     }
 
-
     @Test
     void getTaskPriority_test_pass() throws IOException {
-
         //given
         int testPriority = 10;
         String taskName = "testName";
         int result;
         int expected = testPriority;
+
         try {
             fileWriter = new FileWriter(priorities, true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         fileWriter.write("#taskName " + taskName + " #priority " + testPriority);
         fileWriter.close();
 
@@ -64,7 +63,5 @@ class ToDoTaskPriorityTest {
 
         //then
         Assertions.assertEquals(result, expected);
-
     }
-
 }

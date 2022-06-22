@@ -3,6 +3,8 @@ package pl.edu.pw.ee.organiser;
 import org.jetbrains.annotations.NotNull;
 
 public class CalcUtils {
+    private CalcUtils(){}
+
     public static @NotNull String getLogString(double number){
         return String.valueOf(Math.log10(number));
     }
